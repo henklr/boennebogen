@@ -34,12 +34,15 @@
     .grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
     .actions { position: fixed; left: 0; right: 0; bottom: 0; background: linear-gradient(0deg, rgba(11,16,32,.98), rgba(11,16,32,.8) 60%, rgba(11,16,32,0)); backdrop-filter: saturate(1.2) blur(4px); border-top: 1px solid var(--border); padding: 10px 12px; z-index: 20; }
     .actions .bar { max-width: 800px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
-    .btn { display: inline-flex; justify-content: center; align-items: center; gap: 8px; padding: 12px 14px; border-radius: 12px; border: 1px solid var(--border); font-weight: 600; cursor: pointer; background: #111c3d; color: var(--text); }
+    .btn { display: inline-flex; justify-content: center; align-items: center; gap: 8px; padding: 12px 14px; border-radius: 12px; border: 1px solid var(--border); font-weight: 600; cursor: pointer; background: #111c3d; color: var(--text); text-decoration: none; }
     .btn:active { transform: translateY(1px); }
     .btn.primary { background: var(--accent); border-color: #4338ca; }
     .btn.secondary { background: #0f172a; }
     .btn.danger { background: #1b1221; border-color: #3b1a35; color: #ffd7ef; }
     .btn[disabled] { opacity: .5; cursor: not-allowed; }
+    .home-btn { display: inline-flex; justify-content: center; align-items: center; width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--border); background: #0f172a; color: var(--text); text-decoration: none; font-size: 14px; transition: background .2s ease; }
+    .home-btn:hover { background: #1e293b; }
+    .home-btn:active { transform: translateY(1px); }
     .kicker { font-size: 12px; letter-spacing: .3px; text-transform: uppercase; color: var(--muted); }
     .progress { height: 10px; border-radius: 999px; background: #0b1533; border: 1px solid var(--border); overflow: hidden; }
     .progress > div { height: 100%; width: 0; background: linear-gradient(90deg, var(--accent), #06b6d4); transition: width .25s ease; }
@@ -58,7 +61,8 @@
 <body>
   <header>
     <div class="inner">
-      <h1>Rosenkrans</h1>
+      <a href="index.html" class="home-btn" aria-label="Hjem" title="Tilbage til forsiden">◀</a>
+      <!-- <h1>Rosenkrans</h1> -->
       <div class="row">
         <label class="pill" title="Vælg dag">
           <span class="kicker">Dag</span>
