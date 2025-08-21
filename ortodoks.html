@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ortodokse Bønner • Dansk • Én fil</title>
+  <meta name="theme-color" content="#0f172a">
+  <style>
+    :root {
+      --bg: #0b1020;
+      --card: #101936;
+      --muted: #94a3b8;
+      --text: #e6eefc;
+      --accent: #4f46e5;
+      --accent-2: #22c55e;
+      --danger: #ef4444;
+      --ring: #60a5fa;
+      --border: #1e293b;
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body { margin: 0; font: 16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif; background: var(--bg); color: var(--text); }
+    .app { max-width: 800px; margin: 0 auto; padding: 16px 12px 96px; }
+    header { position: sticky; top: 0; background: linear-gradient(180deg, rgba(11,16,32,.98), rgba(11,16,32,.8) 60%, rgba(11,16,32,0)); backdrop-filter: saturate(1.2) blur(4px); z-index: 10; border-bottom: 1px solid var(--border); }
+    header .inner { max-width: 800px; margin: 0 auto; display: flex; gap: 8px; align-items: center; justify-content: space-between; padding: 12px 8px; }
+    h1 { font-size: 20px; margin: 0; font-weight: 700; letter-spacing: .2px; }
+    .pill { display: inline-flex; align-items: center; gap: 8px; padding: 8px 10px; border: 1px solid var(--border); border-radius: 999px; background: #0f172a; }
+    select, button { accent-color: var(--accent); }
+    select { appearance: none; background: #0f172a; color: var(--text); border: 1px solid var(--border); border-radius: 10px; padding: 10px 36px 10px 12px; font-size: 15px; }
+    .row { display: flex; gap: 10px; flex-wrap: wrap; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 14px 14px; }
+    .card h2 { margin: 0 0 8px; font-size: 18px; }
+    .muted { color: var(--muted); }
+    .grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+    .actions { position: fixed; left: 0; right: 0; bottom: 0; background: linear-gradient(0deg, rgba(11,16,32,.98), rgba(11,16,32,.8) 60%, rgba(11,16,32,0)); backdrop-filter: saturate(1.2) blur(4px); border-top: 1px solid var(--border); padding: 10px 12px; z-index: 20; }
+    .actions .bar { max-width: 800px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+    .btn { display: inline-flex; justify-content: center; align-items: center; gap: 8px; padding: 12px 14px; border-radius: 12px; border: 1px solid var(--border); font-weight: 600; cursor: pointer; background: #111c3d; color: var(--text); }
+    .btn:active { transform: translateY(1px); }
+    .btn.primary { background: var(--accent); border-color: #4338ca; }
+    .btn.secondary { background: #0f172a; }
+    .btn.danger { background: #1b1221; border-color: #3b1a35; color: #ffd7ef; }
+    .btn[disabled] { opacity: .5; cursor: not-allowed; }
+    .kicker { font-size: 12px; letter-spacing: .3px; text-transform: uppercase; color: var(--muted); }
+    .progress { height: 10px; border-radius: 999px; background: #0b1533; border: 1px solid var(--border); overflow: hidden; }
+    .progress > div { height: 100%; width: 0; background: linear-gradient(90deg, var(--accent), #06b6d4); transition: width .25s ease; }
+    .monosmall { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; }
+    .list { display: grid; gap: 8px; }
+    .list .item { padding: 10px 12px; border: 1px dashed var(--border); border-radius: 12px; }
+    .flex { display: flex; gap: 10px; align-items: center; }
+    .grow { flex: 1; }
+    .center { text-align: center; }
+    .big { font-size: 22px; }
+    details { background: #0c1530; border: 1px solid var(--border); border-radius: 12px; padding: 10px; }
+    summary { cursor: pointer; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="inner">
+      <h1>Ortodokse Bønner</h1>
+      <div class="row">
+        <label class="pill" title="Vælg bønnesæt">
+          <span class="kicker">Sæt</span>
+          <select id="setSelect" aria-label="Vælg bønnesæt">
+            <option value="0">Morgenbønner</option>
+            <option value="1">Aftenbønner</option>
+          </select>
+        </label>
+      </div>
+    </div>
+  </header>
+
+  <main class="app">
+    <section class="grid">
+      <div class="card">
+        <div class="kicker">Aktuelt bønnesæt</div>
+        <h2 id="setTitle">Morgenbønner</h2>
+        <div class="muted" id="setSubtitle">Bedes dagligt ved opvågnen</div>
+        <div class="progress" aria-label="Fremskridt"><div id="progressFill" style="width: 2.9%;"></div></div>
+      </div>
+
+      <div class="card" id="currentCard">
+        <div class="kicker" id="currentKind">Indledning</div>
+        <div id="currentTitle" class="big" style="margin:6px 0 8px">Korsets tegn</div>
+        <div id="currentBody">I Faderens og Sønnens og Helligåndens navn. Amen.</div>
+      </div>
+
+      <div class="card">
+        <details>
+          <summary><strong>Oversigt</strong> – hele forløbet</summary>
+          <div id="overview" class="list" style="margin-top:10px"></div>
+        </details>
+      </div>
+
+      <div class="card">
+        <details>
+          <summary><strong>Hjælp</strong> – sådan beder du de ortodokse bønner</summary>
+          <ol>
+            <li>Stå foran ikonerne, gør korsets tegn og begynd med indledende bønner.</li>
+            <li>Bed roligt og opmærksomt, gerne højt eller i en hvisken, for at holde fokus.</li>
+            <li><strong>Morgenbønner</strong>: Følg rækkefølgen: Korsets tegn, indledningsbønner, Jesusbønnen (gentages), Trosbekendelsen, og afsluttende bønner.</li>
+            <li><strong>Aftenbønner</strong>: Følg rækkefølgen: Korsets tegn, bøn om tilgivelse, Jesusbønnen (gentages), bøn til Theotokos, og bøn før søvn.</li>
+            <li>På fastedage (onsdag og fredag) kan røgelse tændes; på søndage tændes lys og røgelse.</li>
+            <li>Bed med ydmyghed og koncentration, og afslut med korsets tegn.</li>
+          </ol>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <nav class="actions" aria-label="Kontroller">
+    <div class="bar">
+      <button id="prevBtn" class="btn secondary" aria-label="Forrige" disabled>◀ Forrige</button>
+      <button id="restartBtn" class="btn danger" aria-label="Genstart">↺ Genstart</button>
+      <button id="nextBtn" class="btn primary" aria-label="Næste">Næste ▶</button>
+    </div>
+  </nav>
+
+  <script>
+    // --- Data: bønner på dansk ---
+    const prayers = {
+      signOfCross: { title: "Korsets tegn", body: "I Faderens og Sønnens og Helligåndens navn. Amen." },
+      toller: { title: "Tollerens bøn", body: "Herre, forbarm dig over mig, en synder!" },
+      introGlory: { title: "Ære være Gud", body: "Ære være dig, vor Gud, ære være dig." },
+      heavenlyKing: { title: "Bøn til Helligånden", body: "Himmelske Konge og Hjelper, Sandhedens Ånd, som er alle steder og opfylder alt, den gode Skat og livets Giver, kom og tag bolig i os, og rens os fra alt ondt og frels, du Gode, vore sjæle." },
+      trisagion: { 
+        title: "Trisagion (tre gange)", 
+        body: "Hellige Gud, Hellige Stærke, Hellige Udødelige, forbarm dig over os. (Gentages tre gange)\n\nÆre være Faderen og Sønnen og Helligånden, nu og altid og i al evighed. Amen." 
+      },
+      trinity: { title: "Bøn til Treenigheden", body: "Allhellige Treenighed, forbarm dig over os. Herre, rens os fra vore synder. Hersker, forlad os vore misgerninger. Hellige, kom og helbred vore skrøbeligheder for dit navns skyld." },
+      jesusPrayer: { 
+        title: "Jesusbønnen (gentages)", 
+        body: "Herre Jesus Kristus, Guds Søn, forbarm dig over mig, en synder.\n\n(Anbefales gentaget flere gange, fx med bønnesnor)" 
+      },
+      creed: {
+        title: "Trosbekendelsen", 
+        body: "Jeg tror på én Gud, Fader, den Almægtige, skaber af himmel og jord, af alt synligt og usynligt. Og på én Herre, Jesus Kristus, Guds enbårne Søn, født af Faderen før alle tider: Gud af Gud, Lys af Lys, sand Gud af sand Gud, født, ikke skabt, af samme væsen som Faderen, ved hvem alt er skabt; som for os mennesker og for vor frelse steg ned fra himlene, blev kød ved Helligånden af Jomfru Maria og blev menneske; blev korsfæstet for os under Pontius Pilatus, led og blev begravet; opstod på tredje dag ifølge Skrifterne; opfor til himlene, sidder ved Faderens højre hånd; skal komme igen i herlighed for at dømme levende og døde; hans rige skal ingen ende have. Og på Helligånden, Herren og Livgiveren, som udgår af Faderen, som tillige med Faderen og Sønnen tilbedes og æres, som har talt gennem profeterne. Og på én hellig, katolsk og apostolsk kirke. Jeg bekender én dåb til syndernes forladelse. Jeg forventer de dødes opstandelse og det kommende tidsalders liv. Amen." 
+      },
+      morningPrayer: { 
+        title: "Morgenbøn", 
+        body: "O Herre, giv mig i dag at stå op til et nyt liv i din nåde, renset fra synd, med et hjerte fyldt af taknemmelighed og ydmyghed. Led mine skridt, så jeg må vandre i din sandhed og tjene dig i kærlighed. Amen." 
+      },
+      eveningForgiveness: { 
+        title: "Bøn om tilgivelse", 
+        body: "O Herre, tilgiv mig alle mine synder, som jeg har begået i dag, bevidst eller ubevidst, i ord, gerning eller tanke. Rens mit hjerte og giv mig fred. Amen." 
+      },
+      theotokos: { 
+        title: "Bøn til Theotokos", 
+        body: "O Allhellige Jomfru Maria, Guds Moder, bed for os syndere, beskyt os under dine hellige bønner, og led os til din Søn, vor Frelser. Amen." 
+      },
+      eveningPrayer: { 
+        title: "Aftenbøn før søvn", 
+        body: "O Herre, vor Gud, beskyt mig denne nat, og giv mig en rolig søvn. Bevar mig fra alt ondt, og led mig til dit evige rige gennem din store barmhjertighed. Amen." 
+      }
+    };
+
+    // Bønnesæt
+    const PRAYER_SETS = {
+      Morning: {
+        name: "Morgenbønner",
+        subtitle: "Bedes dagligt ved opvågnen",
+        items: [
+          { title: prayers.signOfCross.title, body: prayers.signOfCross.body, kind: "Indledning" },
+          { title: prayers.toller.title, body: prayers.toller.body, kind: "Indledning" },
+          { title: prayers.introGlory.title, body: prayers.introGlory.body, kind: "Indledning" },
+          { title: prayers.heavenlyKing.title, body: prayers.heavenlyKing.body, kind: "Indledning" },
+          { title: prayers.trisagion.title, body: prayers.trisagion.body, kind: "Indledning" },
+          { title: prayers.trinity.title, body: prayers.trinity.body, kind: "Indledning" },
+          { title: prayers.jesusPrayer.title, body: prayers.jesusPrayer.body, kind: "Hovedbøn" },
+          { title: prayers.creed.title, body: prayers.creed.body, kind: "Hovedbøn" },
+          { title: prayers.morningPrayer.title, body: prayers.morningPrayer.body, kind: "Afslutning" },
+          { title: prayers.signOfCross.title, body: prayers.signOfCross.body, kind: "Afslutning" }
+        ]
+      },
+      Evening: {
+        name: "Aftenbønner",
+        subtitle: "Bedes dagligt før søvn",
+        items: [
+          { title: prayers.signOfCross.title, body: prayers.signOfCross.body, kind: "Indledning" },
+          { title: prayers.toller.title, body: prayers.toller.body, kind: "Indledning" },
+          { title: prayers.trisagion.title, body: prayers.trisagion.body, kind: "Indledning" },
+          { title: prayers.jesusPrayer.title, body: prayers.jesusPrayer.body, kind: "Hovedbøn" },
+          { title: prayers.eveningForgiveness.title, body: prayers.eveningForgiveness.body, kind: "Hovedbøn" },
+          { title: prayers.theotokos.title, body: prayers.theotokos.body, kind: "Hovedbøn" },
+          { title: prayers.eveningPrayer.title, body: prayers.eveningPrayer.body, kind: "Afslutning" },
+          { title: prayers.signOfCross.title, body: prayers.signOfCross.body, kind: "Afslutning" }
+        ]
+      }
+    };
+
+    // Hvilket sæt pr. valg
+    function setToKey(s) {
+      const map = {
+        0: 'Morning',
+        1: 'Evening'
+      };
+      return map[s] || 'Morning';
+    }
+
+    // Byg rækken af trin for et valgt bønnesæt
+    function buildSequence(setKey) {
+      const set = PRAYER_SETS[setKey];
+      return { seq: set.items, set };
+    }
+
+    // UI state
+    const state = {
+      setKey: null,
+      sequence: [],
+      i: 0
+    };
+
+    const els = {
+      setSelect: document.getElementById('setSelect'),
+      setTitle: document.getElementById('setTitle'),
+      setSubtitle: document.getElementById('setSubtitle'),
+      currentKind: document.getElementById('currentKind'),
+      currentTitle: document.getElementById('currentTitle'),
+      currentBody: document.getElementById('currentBody'),
+      progressFill: document.getElementById('progressFill'),
+      nextBtn: document.getElementById('nextBtn'),
+      prevBtn: document.getElementById('prevBtn'),
+      restartBtn: document.getElementById('restartBtn'),
+      overview: document.getElementById('overview')
+    };
+
+    function selectSetForUI() {
+      const sel = els.setSelect.value;
+      const key = setToKey(sel);
+      loadSet(key);
+    }
+
+    function loadSet(key) {
+      const built = buildSequence(key);
+      state.setKey = key;
+      state.sequence = built.seq;
+      state.i = 0;
+      // Header
+      els.setTitle.textContent = PRAYER_SETS[key].name;
+      els.setSubtitle.textContent = PRAYER_SETS[key].subtitle;
+      // Oversigt
+      renderOverview();
+      // Første trin
+      renderStep();
+      savePrefs();
+    }
+
+    function renderOverview() {
+      els.overview.innerHTML = '';
+      state.sequence.forEach((s, idx) => {
+        const div = document.createElement('div');
+        div.className = 'item';
+        div.innerHTML = `<div class="kicker">${s.kind}</div><div><strong>${idx + 1}.</strong> ${s.title}</div>`;
+        div.addEventListener('click', () => { state.i = idx; renderStep(); });
+        els.overview.appendChild(div);
+      });
+    }
+
+    function renderStep() {
+      const s = state.sequence[state.i];
+      els.currentKind.textContent = s.kind;
+      els.currentTitle.textContent = s.title;
+      els.currentBody.textContent = s.body;
+      // Progress
+      const pct = ((state.i + 1) / state.sequence.length) * 100;
+      els.progressFill.style.width = pct.toFixed(1) + '%';
+      // Buttons
+      els.prevBtn.disabled = state.i === 0;
+      els.nextBtn.textContent = (state.i === state.sequence.length - 1) ? 'Færdig ✔' : 'Næste ▶';
+      // Scroll til kortet på mobil
+      document.getElementById('currentCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function next() { if (state.i < state.sequence.length - 1) { state.i++; renderStep(); } }
+    function prev() { if (state.i > 0) { state.i--; renderStep(); } }
+    function restart() { state.i = 0; renderStep(); }
+
+    function savePrefs() {
+      const data = { setSel: els.setSelect.value, setKey: state.setKey };
+      localStorage.setItem('orthodoxPrayersDA', JSON.stringify(data));
+    }
+
+    function loadPrefs() {
+      try {
+        const data = JSON.parse(localStorage.getItem('orthodoxPrayersDA') || '{}');
+        els.setSelect.value = data.setSel || '0';
+        selectSetForUI();
+      } catch {
+        els.setSelect.value = '0';
+        selectSetForUI();
+      }
+    }
+
+    // Events
+    els.nextBtn.addEventListener('click', next);
+    els.prevBtn.addEventListener('click', prev);
+    els.restartBtn.addEventListener('click', restart);
+    els.setSelect.addEventListener('change', () => { selectSetForUI(); });
+
+    // Gestus: tryk på teksten for næste
+    document.getElementById('currentCard').addEventListener('click', (e) => {
+      next();
+    });
+
+    // Tastatur (space/enter/venstre/højre)
+    window.addEventListener('keydown', (e) => {
+      if (['INPUT', 'TEXTAREA', 'SELECT'].includes((e.target || {}).tagName)) return;
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'Enter') { e.preventDefault(); next(); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); prev(); }
+    });
+
+    // Init
+    loadPrefs();
+  </script>
+</body>
+</html>

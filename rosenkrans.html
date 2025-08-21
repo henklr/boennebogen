@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rosenkrans • Dansk • Én fil</title>
+  <meta name="theme-color" content="#0f172a">
+  <style>
+    :root {
+      --bg: #0b1020;
+      --card: #101936;
+      --muted: #94a3b8;
+      --text: #e6eefc;
+      --accent: #4f46e5;
+      --accent-2: #22c55e;
+      --danger: #ef4444;
+      --ring: #60a5fa;
+      --border: #1e293b;
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body { margin: 0; font: 16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif; background: var(--bg); color: var(--text); }
+    .app { max-width: 800px; margin: 0 auto; padding: 16px 12px 96px; }
+    header { position: sticky; top: 0; background: linear-gradient(180deg, rgba(11,16,32,.98), rgba(11,16,32,.8) 60%, rgba(11,16,32,0)); backdrop-filter: saturate(1.2) blur(4px); z-index: 10; border-bottom: 1px solid var(--border); }
+    header .inner { max-width: 800px; margin: 0 auto; display: flex; gap: 8px; align-items: center; justify-content: space-between; padding: 12px 8px; }
+    h1 { font-size: 20px; margin: 0; font-weight: 700; letter-spacing: .2px; }
+    .pill { display: inline-flex; align-items: center; gap: 8px; padding: 8px 10px; border: 1px solid var(--border); border-radius: 999px; background: #0f172a; }
+    select, button { accent-color: var(--accent); }
+    select { appearance: none; background: #0f172a; color: var(--text); border: 1px solid var(--border); border-radius: 10px; padding: 10px 36px 10px 12px; font-size: 15px; }
+    .row { display: flex; gap: 10px; flex-wrap: wrap; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 14px 14px; }
+    .card h2 { margin: 0 0 8px; font-size: 18px; }
+    .muted { color: var(--muted); }
+    .grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+    .actions { position: fixed; left: 0; right: 0; bottom: 0; background: linear-gradient(0deg, rgba(11,16,32,.98), rgba(11,16,32,.8) 60%, rgba(11,16,32,0)); backdrop-filter: saturate(1.2) blur(4px); border-top: 1px solid var(--border); padding: 10px 12px; z-index: 20; }
+    .actions .bar { max-width: 800px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+    .btn { display: inline-flex; justify-content: center; align-items: center; gap: 8px; padding: 12px 14px; border-radius: 12px; border: 1px solid var(--border); font-weight: 600; cursor: pointer; background: #111c3d; color: var(--text); }
+    .btn:active { transform: translateY(1px); }
+    .btn.primary { background: var(--accent); border-color: #4338ca; }
+    .btn.secondary { background: #0f172a; }
+    .btn.danger { background: #1b1221; border-color: #3b1a35; color: #ffd7ef; }
+    .btn[disabled] { opacity: .5; cursor: not-allowed; }
+    .kicker { font-size: 12px; letter-spacing: .3px; text-transform: uppercase; color: var(--muted); }
+    .progress { height: 10px; border-radius: 999px; background: #0b1533; border: 1px solid var(--border); overflow: hidden; }
+    .progress > div { height: 100%; width: 0; background: linear-gradient(90deg, var(--accent), #06b6d4); transition: width .25s ease; }
+    .monosmall { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; }
+    .list { display: grid; gap: 8px; }
+    .list .item { padding: 10px 12px; border: 1px dashed var(--border); border-radius: 12px; }
+    .flex { display: flex; gap: 10px; align-items: center; }
+    .grow { flex: 1; }
+    .center { text-align: center; }
+    .big { font-size: 22px; }
+    details { background: #0c1530; border: 1px solid var(--border); border-radius: 12px; padding: 10px; }
+    summary { cursor: pointer; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="inner">
+      <h1>Rosenkrans</h1>
+      <div class="row">
+        <label class="pill" title="Vælg dag">
+          <span class="kicker">Dag</span>
+          <select id="daySelect" aria-label="Vælg dag">
+            <option value="0">Søndag</option>
+            <option value="1">Mandag</option>
+            <option value="2">Tirsdag</option>
+            <option value="3">Onsdag</option>
+            <option value="4">Torsdag</option>
+            <option value="5">Fredag</option>
+            <option value="6">Lørdag</option>
+          </select>
+        </label>
+      </div>
+    </div>
+  </header>
+
+  <main class="app">
+    <section class="grid">
+      <div class="card">
+        <div class="kicker">Aktuelle mysterier</div>
+        <h2 id="mysteryTitle">Lysets mysterier</h2>
+        <div class="muted" id="mysterySubtitle">Bedes normalt torsdag</div>
+        <div class="progress" aria-label="Fremskridt"><div id="progressFill" style="width: 2.9%;"></div></div>
+      </div>
+
+      <div class="card" id="currentCard">
+        <div class="kicker" id="currentKind">Intro</div>
+        <div id="currentTitle" class="big" style="margin:6px 0 8px">Korsets tegn</div>
+        <div id="currentBody">I Faderens og Sønnens og Helligåndens navn. Amen.</div>
+      </div>
+
+      <div class="card">
+        <details>
+          <summary><strong>Oversigt</strong> – hele forløbet for i dag</summary>
+          <div id="overview" class="list" style="margin-top:10px"></div>
+        </details>
+      </div>
+
+      <div class="card">
+        <details>
+          <summary><strong>Hjælp</strong> – sådan beder du rosenkransen</summary>
+          <ol>
+            <li>Korsets tegn → Trosbekendelsen.</li>
+            <li>1× Fadervor, 3× Ave Maria (tro, håb, kærlighed), 1× Ære være Faderen.</li>
+            <li>For hvert mysterium (5 i alt): bekræft mysteriet, 1× Fadervor, 10× Ave Maria, 1× Ære være Faderen, <em>O min Jesus</em>.</li>
+            <li>Afslut: Hil dig Dronning (Salve Regina) + afslutningsbøn + korsets tegn.</li>
+          </ol>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <nav class="actions" aria-label="Kontroller">
+    <div class="bar">
+      <button id="prevBtn" class="btn secondary" aria-label="Forrige" disabled>◀ Forrige</button>
+      <button id="restartBtn" class="btn danger" aria-label="Genstart">↺ Genstart</button>
+      <button id="nextBtn" class="btn primary" aria-label="Næste">Næste ▶</button>
+    </div>
+  </nav>
+
+  <script>
+    // --- Data: bønner på dansk ---
+    const prayers = {
+      signOfCross: { title: "Korsets tegn", body: "I Faderens og Sønnens og Helligåndens navn. Amen." },
+      creed: { title: "Apostolsk trosbekendelse", body: `Jeg tror på Gud Fader, den Almægtige, himlens og jordens skaber, og på Jesus Kristus, hans enbårne Søn, vor Herre, som er undfanget ved Helligånden, født af jomfru Maria, pint under Pontius Pilatus, korsfæstet, død og begravet, nedfaret til dødsriget, på tredje dag opstanden fra de døde, opfaret til himmels, siddende ved Gud Faders, den Almægtiges, højre hånd, hvorfra han skal komme at dømme levende og døde. Jeg tror på Helligånden, den hellige katolske kirke, de helliges samfund, syndernes forladelse, kødets opstandelse og det evige liv. Amen.` },
+      pater: { title: "Fadervor", body: `Fader vor, du som er i himlene! Helliget blive dit navn, komme dit rige; ske din vilje som i himlen således også på jorden; giv os i dag vort daglige brød; og forlad os vor skyld, som også vi forlader vore skyldnere; og led os ikke ind i fristelse, men fri os fra det onde. Amen.` },
+      ave: { title: "Ave Maria", body: `Hil dig Maria, fuld af nåde, Herren er med dig. Velsignet er du blandt kvinder, og velsignet er dit livs frugt, Jesus.\nHellige Maria, Guds Moder, bed for os syndere, nu og i vor dødstime. Amen.` },
+      gloria: { title: "Ære være Faderen", body: `Ære være Faderen og Sønnen og Helligånden; som det var i begyndelsen, så nu og altid og i al evighed. Amen.` },
+      fatima: { title: "Fatimabøn", body: `O min Jesus, forlad os vore synder, frels os fra helvedes ild; før alle sjæle til himlen, især dem, som trænger mest til din barmhjertighed. Amen.` },
+      salveRegina: { title: "Hil dig Dronning (Salve Regina)", body: `Hil dig, Dronning, barmhjertighedens moder, vort liv, vor mildhed og vort håb, hil dig. Til dig råber vi, Evas forviste børn; til dig sukker vi, klagende og grædende i denne tåredal. Kom derfor, vor talskvinde, vend dine barmhjertige øjne mod os, og efter dette landflygtigheds liv, vis os Jesus, din livs frugt, velsignet. O milde, o fromme, o søde jomfru Maria.` },
+      closing: { title: "Afslutningsbøn", body: `Lad os bede: Gud, hvis enbårne Søn ved sit liv, sin død og opstandelse har skænket os frelsen, giv os, at vi, når vi i den hellige Rosenkrans ærbødigt betænker disse mysterier, må efterligne det, de indeholder, og opnå det, de lover, ved samme Kristus, vor Herre. Amen.` }
+    };
+
+    // Mysterier (DA) med traditionelle forklaringer og Ave Maria-tilføjelser
+    const MYSTERIES = {
+      Joyful: {
+        name: "Glædens mysterier",
+        subtitle: "Bedes normalt mandag og lørdag",
+        items: [
+          {
+            title: "Bebudelsen (Englen besøger Maria)",
+            body: "Vi betænker, hvordan englen Gabriel bebuder Maria, at hun skal blive Guds Moder, og hun svarer ydmygt: 'Se, jeg er Herrens tjenerinde; det ske mig efter dit ord.' (Luk 1,38). Lad os bede om ydmyghed og lydighed mod Guds vilje.",
+            aveClause: "som blev undfanget ved Helligånden"
+          },
+          {
+            title: "Visitationsmysteriet (Maria besøger Elisabeth)",
+            body: "Vi betænker, hvordan Maria besøger sin kusine Elisabeth, og ved deres møde fyldes Elisabeth af Helligånden og priser Maria. Maria synger Magnificat. Lad os bede om næstekærlighed og glæde i tjeneste for andre.",
+            aveClause: "som du bar i dit skød til Elisabeth"
+          },
+          {
+            title: "Jesu fødsel i Betlehem",
+            body: "Vi betænker, hvordan Jesus fødes i en stald i Betlehem, og Maria og Josef tager imod ham i fattigdom og kærlighed. Englene synger: 'Ære være Gud i det højeste!' Lad os bede om fattigdom i ånden og glæde over Kristi komme.",
+            aveClause: "som blev født af dig i Betlehem"
+          },
+          {
+            title: "Fremstillingen af Jesus i templet",
+            body: "Vi betænker, hvordan Maria og Josef bringer Jesus til templet for at fremstille ham for Herren, og Simeon priser ham som verdens lys. Lad os bede om lydighed mod Guds lov og hengivenhed til Kristus.",
+            aveClause: "som du fremstillede i templet"
+          },
+          {
+            title: "Jesus, tolv år, i templet",
+            body: "Vi betænker, hvordan Jesus som tolvårig bliver i templet for at tale om sin Fader, og Maria og Josef finder ham efter tre dage. Lad os bede om visdom og iver efter Guds rige.",
+            aveClause: "som du fandt i templet"
+          }
+        ]
+      },
+      Luminous: {
+        name: "Lysets mysterier",
+        subtitle: "Bedes normalt torsdag",
+        items: [
+          {
+            title: "Jesu dåb i Jordan",
+            body: "Vi betænker, hvordan Jesus døbes af Johannes i Jordanfloden, og Helligånden kommer over ham, mens Faderens stemme siger: 'Du er min elskede Søn.' (Matt 3,17). Lad os bede om åbenhed for Helligånden og renhed i hjertet.",
+            aveClause: "som blev døbt i Jordan"
+          },
+          {
+            title: "Brylluppet i Kana",
+            body: "Vi betænker, hvordan Jesus på Marias opfordring forvandler vand til vin ved brylluppet i Kana og åbenbarer sin herlighed. Lad os bede om tillid til Marias forbøn og tro på Jesu kraft.",
+            aveClause: "som åbenbarede sin herlighed i Kana"
+          },
+          {
+            title: "Kundgørelsen af Guds rige",
+            body: "Vi betænker, hvordan Jesus forkynder Guds rige og kalder til omvendelse: 'Omvend jer, thi Himmeriget er kommet nær!' (Matt 4,17). Lad os bede om mod til at omvende os og leve efter Guds vilje.",
+            aveClause: "som forkyndte Guds rige"
+          },
+          {
+            title: "Forklarelsen på bjerget",
+            body: "Vi betænker, hvordan Jesus på bjerget åbenbarer sin guddommelige herlighed for Peter, Jakob og Johannes, og Faderens stemme siger: 'Hør ham!' (Matt 17,5). Lad os bede om styrke til at følge Kristus.",
+            aveClause: "som blev forherliget på bjerget"
+          },
+          {
+            title: "Eukaristiens indstiftelse",
+            body: "Vi betænker, hvordan Jesus ved den sidste nadver indstifter Eukaristien, idet han giver os sit legeme og blod under brødets og vinens skikkelse. Lad os bede om større kærlighed til Eukaristien.",
+            aveClause: "som indstiftede Eukaristien"
+          }
+        ]
+      },
+      Sorrowful: {
+        name: "Smertens mysterier",
+        subtitle: "Bedes normalt tirsdag og fredag",
+        items: [
+          {
+            title: "Jesu angst i Getsemane have",
+            body: "Vi betænker, hvordan Jesus i Getsemane beder i angst: 'Fader, hvis det er muligt, lad denne kalk gå mig forbi.' (Matt 26,39). Han accepterer Guds vilje. Lad os bede om styrke til at bære lidelse.",
+            aveClause: "som led dødsangst i Getsemane"
+          },
+          {
+            title: "Piskningen ved søjlen",
+            body: "Vi betænker, hvordan Jesus piskes grusomt ved søjlen og bærer smerten for vores synder. Lad os bede om bod og afholdenhed fra synd.",
+            aveClause: "som blev pisket for vores synder"
+          },
+          {
+            title: "Tornerning af Jesus",
+            body: "Vi betænker, hvordan Jesus hånes med en tornekrone og tager imod spot for vores stolthed. Lad os bede om ydmyghed og tålmodighed i ydmygelser.",
+            aveClause: "som blev tornekronet"
+          },
+          {
+            title: "Jesus bærer korset",
+            body: "Vi betænker, hvordan Jesus bærer det tunge kors til Golgata, idet han lider for vores frelse. Lad os bede om kraft til at bære vores kors med kærlighed.",
+            aveClause: "som bar korset for os"
+          },
+          {
+            title: "Korsfæstelsen og døden",
+            body: "Vi betænker, hvordan Jesus dør på korset og siger: 'Det er fuldbragt!' (Joh 19,30). Han giver sit liv for os. Lad os bede om taknemmelighed for hans offer og nåde til at dø fra synden.",
+            aveClause: "som døde på korset for os"
+          }
+        ]
+      },
+      Glorious: {
+        name: "Herlighedens mysterier",
+        subtitle: "Bedes normalt onsdag og søndag",
+        items: [
+          {
+            title: "Opstandelsen",
+            body: "Vi betænker, hvordan Jesus opstår fra de døde og sejrer over synd og død. 'Han er ikke her, han er opstanden!' (Luk 24,6). Lad os bede om tro på opstandelsen og evigt liv.",
+            aveClause: "som opstod fra de døde"
+          },
+          {
+            title: "Himmelfarten",
+            body: "Vi betænker, hvordan Jesus farer op til himlen og lover at være med os alle dage. Lad os bede om håb om himlen og iver efter at gøre hans vilje.",
+            aveClause: "som fór op til himlen"
+          },
+          {
+            title: "Helligåndens komme (Pinsedag)",
+            body: "Vi betænker, hvordan Helligånden kommer over apostlene i form af ildtunger og giver dem kraft til at forkynde. Lad os bede om Helligåndens gaver.",
+            aveClause: "som sendte Helligånden"
+          },
+          {
+            title: "Marias optagelse i himlen",
+            body: "Vi betænker, hvordan Maria tages op til himlen med sjæl og legeme som en frugt af hendes troskab. Lad os bede om renhed og hengivenhed til Gud.",
+            aveClause: "som optog dig i himlen"
+          },
+          {
+            title: "Marias kroning som himlens og jordens dronning",
+            body: "Vi betænker, hvordan Maria krones som himlens dronning og beder for os. Lad os bede om hendes forbøn og en dybere kærlighed til hende.",
+            aveClause: "som kronede dig som himlens dronning"
+          }
+        ]
+      }
+    };
+
+    // Hvilke mysterier pr. ugedag (0 = søndag)
+    function dayToSet(d) {
+      const map = {
+        0: 'Glorious', // søndag
+        1: 'Joyful',   // mandag
+        2: 'Sorrowful',// tirsdag
+        3: 'Glorious', // onsdag
+        4: 'Luminous', // torsdag
+        5: 'Sorrowful',// fredag
+        6: 'Joyful'    // lørdag
+      };
+      return map[d] || 'Joyful';
+    }
+
+    // Byg hele rækken af trin for en valgt mysterierække
+    function buildSequence(setKey) {
+      const set = MYSTERIES[setKey];
+      const seq = [];
+      // Indledning
+      seq.push({ kind: 'Intro', title: prayers.signOfCross.title, body: prayers.signOfCross.body, bead: 0 });
+      seq.push({ kind: 'Intro', title: prayers.creed.title, body: prayers.creed.body, bead: 0 });
+      seq.push({ kind: 'Intro', title: prayers.pater.title, body: prayers.pater.body, bead: 1 });
+      // 3 Ave Maria (tro, håb, kærlighed)
+      const virtues = ['for tro', 'for håb', 'for kærlighed'];
+      virtues.forEach((v, i) => {
+        const aveBody = prayers.ave.body.replace('Jesus.', `Jesus, som forøger vor ${v.split('for ')[1]}.`);
+        seq.push({ kind: 'Intro', title: `Ave Maria (${v})`, body: aveBody, bead: 2 + i });
+      });
+      seq.push({ kind: 'Intro', title: prayers.gloria.title, body: prayers.gloria.body, bead: 5 });
+
+      // 5 dekader
+      set.items.forEach((myst, i) => {
+        seq.push({ kind: 'Mysterium', title: `${i + 1}. ${myst.title}`, body: myst.body, bead: null });
+        seq.push({ kind: 'Dekade', title: prayers.pater.title, body: prayers.pater.body, bead: 6 + i * 11 });
+        const aveBody = prayers.ave.body.replace('Jesus.', `Jesus, ${myst.aveClause}.`) + '\n\n(Gentages 10 gange)';
+        seq.push({ kind: 'Dekade', title: `Ave Maria (10 gange)`, body: aveBody, bead: 7 + i * 11 });
+        seq.push({ kind: 'Dekade', title: prayers.gloria.title, body: prayers.gloria.body, bead: 17 + i * 11 });
+        seq.push({ kind: 'Dekade', title: prayers.fatima.title, body: prayers.fatima.body, bead: null });
+      });
+
+      // Afslutning
+      seq.push({ kind: 'Afslutning', title: prayers.salveRegina.title, body: prayers.salveRegina.body, bead: null });
+      seq.push({ kind: 'Afslutning', title: prayers.closing.title, body: prayers.closing.body, bead: null });
+      seq.push({ kind: 'Afslutning', title: prayers.signOfCross.title, body: prayers.signOfCross.body, bead: null });
+
+      return { seq, set };
+    }
+
+    // UI state
+    const state = {
+      setKey: null,
+      sequence: [],
+      i: 0
+    };
+
+    const els = {
+      daySelect: document.getElementById('daySelect'),
+      mysteryTitle: document.getElementById('mysteryTitle'),
+      mysterySubtitle: document.getElementById('mysterySubtitle'),
+      currentKind: document.getElementById('currentKind'),
+      currentTitle: document.getElementById('currentTitle'),
+      currentBody: document.getElementById('currentBody'),
+      progressFill: document.getElementById('progressFill'),
+      nextBtn: document.getElementById('nextBtn'),
+      prevBtn: document.getElementById('prevBtn'),
+      restartBtn: document.getElementById('restartBtn'),
+      overview: document.getElementById('overview')
+    };
+
+    function getTodayWeekday() { // 0= søn … 6=lør
+      const now = new Date();
+      return now.getDay();
+    }
+
+    function selectSetForUI() {
+      const sel = els.daySelect.value; // Get the selected day from dropdown
+      const d = parseInt(sel, 10); // Convert to integer (0-6)
+      const key = dayToSet(d); // Map day to mystery set
+      loadSet(key); // Load the mystery set
+    }
+
+    function loadSet(key) {
+      const built = buildSequence(key);
+      state.setKey = key;
+      state.sequence = built.seq;
+      state.i = 0;
+      // Header
+      els.mysteryTitle.textContent = MYSTERIES[key].name;
+      els.mysterySubtitle.textContent = MYSTERIES[key].subtitle;
+      // Oversigt
+      renderOverview();
+      // Første trin
+      renderStep();
+      savePrefs();
+    }
+
+    function renderOverview() {
+      els.overview.innerHTML = '';
+      state.sequence.forEach((s, idx) => {
+        const div = document.createElement('div');
+        div.className = 'item';
+        div.innerHTML = `<div class="kicker">${s.kind}</div><div><strong>${idx + 1}.</strong> ${s.title}</div>`;
+        div.addEventListener('click', () => { state.i = idx; renderStep(); });
+        els.overview.appendChild(div);
+      });
+    }
+
+    function renderStep() {
+      const s = state.sequence[state.i];
+      els.currentKind.textContent = s.kind;
+      els.currentTitle.textContent = s.title;
+      els.currentBody.textContent = s.body;
+      // Progress
+      const pct = ((state.i + 1) / state.sequence.length) * 100;
+      els.progressFill.style.width = pct.toFixed(1) + '%';
+      // Buttons
+      els.prevBtn.disabled = state.i === 0;
+      els.nextBtn.textContent = (state.i === state.sequence.length - 1) ? 'Færdig ✔' : 'Næste ▶';
+      // Scroll til kortet på mobil
+      document.getElementById('currentCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function next() { if (state.i < state.sequence.length - 1) { state.i++; renderStep(); } }
+    function prev() { if (state.i > 0) { state.i--; renderStep(); } }
+    function restart() { state.i = 0; renderStep(); }
+
+    function savePrefs() {
+      const data = { daySel: els.daySelect.value, setKey: state.setKey };
+      localStorage.setItem('rosaryDA', JSON.stringify(data));
+    }
+
+    function loadPrefs() {
+      try {
+        const data = JSON.parse(localStorage.getItem('rosaryDA') || '{}');
+        els.daySelect.value = getTodayWeekday(); // Always default to current day on load
+        selectSetForUI(); // Load the set based on the current day
+      } catch {
+        els.daySelect.value = getTodayWeekday(); // Default to current day on error
+        selectSetForUI();
+      }
+    }
+
+    // Events
+    els.nextBtn.addEventListener('click', next);
+    els.prevBtn.addEventListener('click', prev);
+    els.restartBtn.addEventListener('click', restart);
+    els.daySelect.addEventListener('change', () => { selectSetForUI(); });
+
+    // Gestus: tryk på teksten for næste
+    document.getElementById('currentCard').addEventListener('click', (e) => {
+      next();
+    });
+
+    // Tastatur (space/enter/venstre/højre)
+    window.addEventListener('keydown', (e) => {
+      if (['INPUT', 'TEXTAREA', 'SELECT'].includes((e.target || {}).tagName)) return;
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'Enter') { e.preventDefault(); next(); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); prev(); }
+    });
+
+    // Init
+    loadPrefs();
+  </script>
+</body>
+</html>
