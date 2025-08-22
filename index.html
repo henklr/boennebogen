@@ -5,55 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Bønner • Dansk</title>
   <meta name="theme-color" content="#0f172a">
-  <style>
-    :root {
-      --bg: #0b1020;
-      --card: #101936;
-      --muted: #94a3b8;
-      --text: #e6eefc;
-      --accent: #4f46e5;
-      --accent-2: #22c55e;
-      --danger: #ef4444;
-      --ring: #60a5fa;
-      --border: #1e293b;
-    }
-    * { box-sizing: border-box; }
-    html, body { height: 100%; }
-    body { margin: 0; font: 16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif; background: var(--bg); color: var(--text); }
-    .app { max-width: 800px; margin: 0 auto; padding: 16px 12px 96px; }
-    header { position: sticky; top: 0; background: linear-gradient(180deg, rgba(11,16,32,.98), rgba(11,16,32,.8) 60%, rgba(11,16,32,0)); backdrop-filter: saturate(1.2) blur(4px); z-index: 10; border-bottom: 1px solid var(--border); }
-    header .inner { max-width: 800px; margin: 0 auto; display: flex; align-items: center; justify-content: center; padding: 12px 8px; }
-    h1 { font-size: 20px; margin: 0; font-weight: 700; letter-spacing: .2px; }
-    .card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 14px 14px; }
-    .card h2 { margin: 0 0 8px; font-size: 18px; }
-    .muted { color: var(--muted); }
-    .grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
-    .btn { display: inline-flex; justify-content: center; align-items: center; gap: 8px; padding: 12px 14px; border-radius: 12px; border: 1px solid var(--border); font-weight: 600; cursor: pointer; background: #111c3d; color: var(--text); text-decoration: none; }
-    .btn:hover { background: #1e293b; }
-    .btn:active { transform: translateY(1px); }
-    .btn.primary { background: var(--accent); border-color: #4338ca; }
-    .center { text-align: center; }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
-    <div class="inner">
+    <div class="center">
       <h1>Bønner</h1>
     </div>
   </header>
 
   <main class="app">
     <section class="grid">
-      <div class="card">
-        <h2>Rosenkrans</h2>
+      <a href="rosenkrans" class="card">
+        <h2>Rosenkransen</h2>
         <p class="muted">En katolsk bøn, der betænker Jesu og Marias liv gennem fem mysterier, bedt dagligt med Fadervor og Ave Maria.</p>
-        <a href="rosenkrans" class="btn primary">Bed Rosenkransen</a>
-      </div>
-      <div class="card">
+      </a>
+      <a href="ortodoks" class="card">
         <h2>Ortodokse Bønner</h2>
         <p class="muted">Morgen- og aftenbønner fra den ortodokse tradition, inklusive Jesusbønnen og Trosbekendelsen, bedt med ydmyghed.</p>
-        <a href="ortodoks" class="btn primary">Bed Ortodokse Bønner</a>
-      </div>
+      </a>
     </section>
   </main>
 </body>

@@ -3,60 +3,9 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Rosenkrans • Dansk • Én fil</title>
+  <title>Rosenkransen</title>
   <meta name="theme-color" content="#0f172a">
-  <style>
-    :root {
-      --bg: #0b1020;
-      --card: #101936;
-      --muted: #94a3b8;
-      --text: #e6eefc;
-      --accent: #4f46e5;
-      --accent-2: #22c55e;
-      --danger: #ef4444;
-      --ring: #60a5fa;
-      --border: #1e293b;
-    }
-    * { box-sizing: border-box; }
-    html, body { height: 100%; }
-    body { margin: 0; font: 16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif; background: var(--bg); color: var(--text); }
-    .app { max-width: 800px; margin: 0 auto; padding: 16px 12px 96px; }
-    header { position: sticky; top: 0; background: linear-gradient(180deg, rgba(11,16,32,.98), rgba(11,16,32,.8) 60%, rgba(11,16,32,0)); backdrop-filter: saturate(1.2) blur(4px); z-index: 10; border-bottom: 1px solid var(--border); }
-    header .inner { max-width: 800px; margin: 0 auto; display: flex; gap: 8px; align-items: center; justify-content: space-between; padding: 12px 8px; }
-    h1 { font-size: 20px; margin: 0; font-weight: 700; letter-spacing: .2px; }
-    .pill { display: inline-flex; align-items: center; gap: 8px; padding: 8px 10px; border: 1px solid var(--border); border-radius: 999px; background: #0f172a; }
-    select, button { accent-color: var(--accent); }
-    select { appearance: none; background: #0f172a; color: var(--text); border: 1px solid var(--border); border-radius: 10px; padding: 10px 36px 10px 12px; font-size: 15px; }
-    .row { display: flex; gap: 10px; flex-wrap: wrap; }
-    .card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 14px 14px; }
-    .card h2 { margin: 0 0 8px; font-size: 18px; }
-    .muted { color: var(--muted); }
-    .grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
-    .actions { position: fixed; left: 0; right: 0; bottom: 0; background: linear-gradient(0deg, rgba(11,16,32,.98), rgba(11,16,32,.8) 60%, rgba(11,16,32,0)); backdrop-filter: saturate(1.2) blur(4px); border-top: 1px solid var(--border); padding: 10px 12px; z-index: 20; }
-    .actions .bar { max-width: 800px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
-    .btn { display: inline-flex; justify-content: center; align-items: center; gap: 8px; padding: 12px 14px; border-radius: 12px; border: 1px solid var(--border); font-weight: 600; cursor: pointer; background: #111c3d; color: var(--text); text-decoration: none; }
-    .btn:active { transform: translateY(1px); }
-    .btn.primary { background: var(--accent); border-color: #4338ca; }
-    .btn.secondary { background: #0f172a; }
-    .btn.danger { background: #1b1221; border-color: #3b1a35; color: #ffd7ef; }
-    .btn[disabled] { opacity: .5; cursor: not-allowed; }
-    .home-btn { display: inline-flex; justify-content: center; align-items: center; width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--border); background: #0f172a; color: var(--text); text-decoration: none; font-size: 14px; transition: background .2s ease; }
-    .home-btn:hover { background: #1e293b; }
-    .home-btn:active { transform: translateY(1px); }
-    .kicker { font-size: 12px; letter-spacing: .3px; text-transform: uppercase; color: var(--muted); }
-    .progress { height: 10px; border-radius: 999px; background: #0b1533; border: 1px solid var(--border); overflow: hidden; }
-    .progress > div { height: 100%; width: 0; background: linear-gradient(90deg, var(--accent), #06b6d4); transition: width .25s ease; }
-    .monosmall { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; }
-    .list { display: grid; gap: 8px; }
-    .list .item { padding: 10px 12px; border: 1px dashed var(--border); border-radius: 12px; }
-    .flex { display: flex; gap: 10px; align-items: center; }
-    .grow { flex: 1; }
-    .center { text-align: center; }
-    .big { font-size: 22px; }
-    details { background: #0c1530; border: 1px solid var(--border); border-radius: 12px; padding: 10px; }
-    summary { cursor: pointer; }
-    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
