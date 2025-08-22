@@ -6,15 +6,16 @@
   <title>Ortodokse Bønner</title>
   <meta name="theme-color" content="#0f172a">
   <link rel="stylesheet" href="style.css">
+  <link rel="preload" href="bg.jpeg" as="image">
 </head>
 <body class="ortodoks">
+  <div class="bg"></div>
   <header>
     <div class="inner">
       <a href="index.html" class="home-btn" aria-label="Hjem" title="Tilbage til forsiden">◀</a>
       <!-- <h1>Ortodokse Bønner</h1> -->
       <div class="row">
         <label class="pill" title="Vælg bønnesæt">
-          <span class="kicker">Sæt</span>
           <select id="setSelect" aria-label="Vælg bønnesæt">
             <option value="0">Morgenbønner</option>
             <option value="1">Aftenbønner</option>
@@ -64,8 +65,8 @@
 
   <nav class="actions" aria-label="Kontroller">
     <div class="bar">
-      <button id="prevBtn" class="btn secondary" aria-label="Forrige" disabled>◀ Forrige</button>
-      <button id="restartBtn" class="btn danger" aria-label="Genstart">↺ Genstart</button>
+      <button id="restartBtn" class="btn" aria-label="Genstart">↺ Genstart</button>
+      <button id="prevBtn" class="btn" aria-label="Forrige" disabled>◀ Forrige</button>
       <button id="nextBtn" class="btn primary" aria-label="Næste">Næste ▶</button>
     </div>
   </nav>
@@ -221,8 +222,6 @@
       // Buttons
       els.prevBtn.disabled = state.i === 0;
       els.nextBtn.textContent = (state.i === state.sequence.length - 1) ? 'Færdig ✔' : 'Næste ▶';
-      // Scroll til kortet på mobil
-      document.getElementById('currentCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
     function next() { if (state.i < state.sequence.length - 1) { state.i++; renderStep(); } }
