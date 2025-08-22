@@ -37,13 +37,19 @@ body.ortodoks .bg {
 header {
     position: sticky;
     top: 0;
+    padding: 12px;
     background: rgba(54, 16, 16, 0.2);
     backdrop-filter: saturate(1.2) blur(4px);
     z-index: 10;
     border-bottom: 1px solid var(--border);
 }
-header .inner { max-width: 800px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 12px 8px; }
-h1 { font-size: 20px; margin: 0; font-weight: 700; letter-spacing: .2px; }
+header .inner { max-width: 800px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0px 8px;}
+h1 {
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: .2px;
+  text-align: center;
+}
 .card {
     display: block;
     background: rgba(54, 16, 16, 0.4);

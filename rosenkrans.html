@@ -6,7 +6,12 @@
   <title>Rosenkransen</title>
   <meta name="theme-color" content="#0f172a">
   <link rel="stylesheet" href="style.css">
-  <link rel="preload" href="bg.jpeg" as="image">
+  <link rel="preload" href="bg-ortodoks-morgen.jpg" as="image">
+  <link rel="preload" href="bg-ortodoks-aften.jpg" as="image">
+  <link rel="preload" href="bg-joyful.jpg" as="image">
+  <link rel="preload" href="bg-luminous.jpg" as="image">
+  <link rel="preload" href="bg-sorrowful.jpg" as="image">
+  <link rel="preload" href="bg-glorious.jpg" as="image">
 </head>
 <body class="rosenkrans">
   <div class="bg"></div>
@@ -93,6 +98,7 @@
       Joyful: {
         name: "Glædens mysterier",
         subtitle: "Bedes normalt mandag og lørdag",
+        image: "bg-joyful.jpg",
         items: [
           {
             title: "Bebudelsen (Englen besøger Maria)",
@@ -124,6 +130,7 @@
       Luminous: {
         name: "Lysets mysterier",
         subtitle: "Bedes normalt torsdag",
+        image: "bg-luminous.jpg",
         items: [
           {
             title: "Jesu dåb i Jordan",
@@ -155,6 +162,7 @@
       Sorrowful: {
         name: "Smertens mysterier",
         subtitle: "Bedes normalt tirsdag og fredag",
+        image: "bg-sorrowful.jpg",
         items: [
           {
             title: "Jesu angst i Getsemane have",
@@ -186,6 +194,7 @@
       Glorious: {
         name: "Herlighedens mysterier",
         subtitle: "Bedes normalt onsdag og søndag",
+        image: "bg-glorious.jpg",
         items: [
           {
             title: "Opstandelsen",
@@ -282,7 +291,8 @@
       nextBtn: document.getElementById('nextBtn'),
       prevBtn: document.getElementById('prevBtn'),
       restartBtn: document.getElementById('restartBtn'),
-      overview: document.getElementById('overview')
+      overview: document.getElementById('overview'),
+      bg: document.querySelector('.bg')
     };
 
     function getTodayWeekday() { // 0= søn … 6=lør
@@ -305,6 +315,8 @@
       // Header
       els.mysteryTitle.textContent = MYSTERIES[key].name;
       els.mysterySubtitle.textContent = MYSTERIES[key].subtitle;
+      // Set background image
+      els.bg.style.backgroundImage = `url(${MYSTERIES[key].image})`;
       // Oversigt
       renderOverview();
       // Første trin

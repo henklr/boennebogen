@@ -6,7 +6,12 @@
   <title>Ortodokse Bønner</title>
   <meta name="theme-color" content="#0f172a">
   <link rel="stylesheet" href="style.css">
-  <link rel="preload" href="bg.jpeg" as="image">
+  <link rel="preload" href="bg-ortodoks-morgen.jpg" as="image">
+  <link rel="preload" href="bg-ortodoks-aften.jpg" as="image">
+  <link rel="preload" href="bg-joyful.jpg" as="image">
+  <link rel="preload" href="bg-luminous.jpg" as="image">
+  <link rel="preload" href="bg-sorrowful.jpg" as="image">
+  <link rel="preload" href="bg-glorious.jpg" as="image">
 </head>
 <body class="ortodoks">
   <div class="bg"></div>
@@ -114,6 +119,7 @@
       Morning: {
         name: "Morgenbønner",
         subtitle: "Bedes dagligt ved opvågnen",
+        image: "bg-ortodoks-morgen.jpg",
         items: [
           { title: prayers.signOfCross.title, body: prayers.signOfCross.body, kind: "Indledning" },
           { title: prayers.toller.title, body: prayers.toller.body, kind: "Indledning" },
@@ -130,6 +136,7 @@
       Evening: {
         name: "Aftenbønner",
         subtitle: "Bedes dagligt før søvn",
+        image: "bg-ortodoks-aften.jpg",
         items: [
           { title: prayers.signOfCross.title, body: prayers.signOfCross.body, kind: "Indledning" },
           { title: prayers.toller.title, body: prayers.toller.body, kind: "Indledning" },
@@ -176,7 +183,8 @@
       nextBtn: document.getElementById('nextBtn'),
       prevBtn: document.getElementById('prevBtn'),
       restartBtn: document.getElementById('restartBtn'),
-      overview: document.getElementById('overview')
+      overview: document.getElementById('overview'),
+      bg: document.querySelector('.bg')
     };
 
     function selectSetForUI() {
@@ -193,6 +201,8 @@
       // Header
       els.setTitle.textContent = PRAYER_SETS[key].name;
       els.setSubtitle.textContent = PRAYER_SETS[key].subtitle;
+      // Set background image
+      els.bg.style.backgroundImage = `url(${PRAYER_SETS[key].image})`;
       // Oversigt
       renderOverview();
       // Første trin
@@ -236,10 +246,22 @@
     function loadPrefs() {
       try {
         const data = JSON.parse(localStorage.getItem('orthodoxPrayersDA') || '{}');
-        els.setSelect.value = data.setSel || '0';
+        // Check if a saved preference exists
+        if (data.setSel) {
+          els.setSelect.value = data.setSel;
+        } else {
+          // Set based on time of day
+          const now = new Date();
+          const hour = now.getHours();
+          // Morning prayers before 6 PM (18:00), Evening prayers after
+          els.setSelect.value = hour < 18 ? '0' : '1';
+        }
         selectSetForUI();
       } catch {
-        els.setSelect.value = '0';
+        // Fallback to time-based selection on error
+        const now = new Date();
+        const hour = now.getHours();
+        els.setSelect.value = hour < 18 ? '0' : '1';
         selectSetForUI();
       }
     }
