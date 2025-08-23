@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="da">
 <head>
+  <link rel="icon" href="favicon.png" type="image/png">
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Rosenkransen</title>
   <meta name="theme-color" content="#0f172a">
   <link rel="stylesheet" href="style.css">
+  <link rel="preload" href="bg-main-menu.jpg" as="image">
   <link rel="preload" href="bg-ortodoks-morgen.jpg" as="image">
   <link rel="preload" href="bg-ortodoks-aften.jpg" as="image">
   <link rel="preload" href="bg-joyful.jpg" as="image">
@@ -15,10 +17,9 @@
 </head>
 <body class="rosenkrans">
   <div class="bg"></div>
-
   <header>
     <div class="inner">
-      <a href="index.html" class="home-btn" aria-label="Hjem" title="Tilbage til forsiden">◀</a>
+      <a href="/" class="home-btn" aria-label="Hjem" title="Tilbage til forsiden">◀</a>
       <!-- <h1>Rosenkrans</h1> -->
       <div class="row">
         <label class="pill" title="Vælg dag">
@@ -84,11 +85,11 @@
     // --- Data: bønner på dansk ---
     const prayers = {
       signOfCross: { title: "Korsets tegn", body: "I Faderens og Sønnens og Helligåndens navn. Amen." },
-      creed: { title: "Apostolsk trosbekendelse", body: `Jeg tror på Gud Fader, den Almægtige, himlens og jordens skaber, og på Jesus Kristus, hans enbårne Søn, vor Herre, som er undfanget ved Helligånden, født af jomfru Maria, pint under Pontius Pilatus, korsfæstet, død og begravet, nedfaret til dødsriget, på tredje dag opstanden fra de døde, opfaret til himmels, siddende ved Gud Faders, den Almægtiges, højre hånd, hvorfra han skal komme at dømme levende og døde. Jeg tror på Helligånden, den hellige katolske kirke, de helliges samfund, syndernes forladelse, kødets opstandelse og det evige liv. Amen.` },
-      pater: { title: "Fadervor", body: `Fader vor, du som er i himlene! Helliget blive dit navn, komme dit rige; ske din vilje som i himlen således også på jorden; giv os i dag vort daglige brød; og forlad os vor skyld, som også vi forlader vore skyldnere; og led os ikke ind i fristelse, men fri os fra det onde. Amen.` },
+      creed: { title: "Apostolsk trosbekendelse", body: `Jeg tror på Gud Fader, den Almægtige, Himlens og jordens skaber. Jeg tror på Jesus Kristus, guds enbårne Søn, vor Herre, som blev undfanget ved Helligånden, født af jomfru Maria, pint under Pontius Pilatus, korsfæstet, død og begravet, nedfor til dødsriget, opstod på den tredje dag fra de døde, opfor til himmels, sidder ved Gud Faders, den Almægtiges, højre hånd, skal derfra komme igen for at dømme de levende og de døde. Jeg tror på Helligånden, den hellige katolske kirke, de helliges samfund, syndernes forladelse, kødets opstandelse og det evige liv. Amen.` },
+      pater: { title: "Fadervor", body: `Fader vor, du som er i Himlene! Helliget vorde dit navn, komme dit rige; ske din vilje som i Himlen således også på jorden; giv os i dag vort daglige brød; og forlad os vor skyld, som også vi forlader vore skyldnere; og led os ikke ind i fristelse, men fri os fra det onde. Amen.` },
       ave: { title: "Ave Maria", body: `Hil dig Maria, fuld af nåde, Herren er med dig. Velsignet er du blandt kvinder, og velsignet er dit livs frugt, Jesus.\nHellige Maria, Guds Moder, bed for os syndere, nu og i vor dødstime. Amen.` },
       gloria: { title: "Ære være Faderen", body: `Ære være Faderen og Sønnen og Helligånden; som det var i begyndelsen, så nu og altid og i al evighed. Amen.` },
-      fatima: { title: "Fatimabøn", body: `O min Jesus, forlad os vore synder, frels os fra helvedes ild; før alle sjæle til himlen, især dem, som trænger mest til din barmhjertighed. Amen.` },
+      fatima: { title: "Fatimabøn", body: `O min Jesus, forlad os vore synder, frels os fra helvedes ild; før alle sjæle ind i Himlen, især dem, som trænger mest til din barmhjertighed. Amen.` },
       salveRegina: { title: "Hil dig Dronning (Salve Regina)", body: `Hil dig, Dronning, barmhjertighedens moder, vort liv, vor mildhed og vort håb, hil dig. Til dig råber vi, Evas forviste børn; til dig sukker vi, klagende og grædende i denne tåredal. Kom derfor, vor talskvinde, vend dine barmhjertige øjne mod os, og efter dette landflygtigheds liv, vis os Jesus, din livs frugt, velsignet. O milde, o fromme, o søde jomfru Maria.` },
       closing: { title: "Afslutningsbøn", body: `Lad os bede: Gud, hvis enbårne Søn ved sit liv, sin død og opstandelse har skænket os frelsen, giv os, at vi, når vi i den hellige Rosenkrans ærbødigt betænker disse mysterier, må efterligne det, de indeholder, og opnå det, de lover, ved samme Kristus, vor Herre. Amen.` }
     };
@@ -103,27 +104,27 @@
           {
             title: "Bebudelsen (Englen besøger Maria)",
             body: "Vi betænker, hvordan englen Gabriel bebuder Maria, at hun skal blive Guds Moder, og hun svarer ydmygt: 'Se, jeg er Herrens tjenerinde; det ske mig efter dit ord.' (Luk 1,38). Lad os bede om ydmyghed og lydighed mod Guds vilje.",
-            aveClause: "som blev undfanget ved Helligånden"
+            aveClause: "som du undfangede ved Helligånden"
           },
           {
             title: "Visitationsmysteriet (Maria besøger Elisabeth)",
             body: "Vi betænker, hvordan Maria besøger sin kusine Elisabeth, og ved deres møde fyldes Elisabeth af Helligånden og priser Maria. Maria synger Magnificat. Lad os bede om næstekærlighed og glæde i tjeneste for andre.",
-            aveClause: "som du bar i dit skød til Elisabeth"
+            aveClause: "som du bar ved dit besøg hos Elisabeth"
           },
           {
             title: "Jesu fødsel i Betlehem",
             body: "Vi betænker, hvordan Jesus fødes i en stald i Betlehem, og Maria og Josef tager imod ham i fattigdom og kærlighed. Englene synger: 'Ære være Gud i det højeste!' Lad os bede om fattigdom i ånden og glæde over Kristi komme.",
-            aveClause: "som blev født af dig i Betlehem"
+            aveClause: "som du fødte i stalden i Betlehem"
           },
           {
             title: "Fremstillingen af Jesus i templet",
             body: "Vi betænker, hvordan Maria og Josef bringer Jesus til templet for at fremstille ham for Herren, og Simeon priser ham som verdens lys. Lad os bede om lydighed mod Guds lov og hengivenhed til Kristus.",
-            aveClause: "som du fremstillede i templet"
+            aveClause: "som du ofrede i templet"
           },
           {
             title: "Jesus, tolv år, i templet",
             body: "Vi betænker, hvordan Jesus som tolvårig bliver i templet for at tale om sin Fader, og Maria og Josef finder ham efter tre dage. Lad os bede om visdom og iver efter Guds rige.",
-            aveClause: "som du fandt i templet"
+            aveClause: "som du genfandt i templet"
           }
         ]
       },
@@ -140,7 +141,7 @@
           {
             title: "Brylluppet i Kana",
             body: "Vi betænker, hvordan Jesus på Marias opfordring forvandler vand til vin ved brylluppet i Kana og åbenbarer sin herlighed. Lad os bede om tillid til Marias forbøn og tro på Jesu kraft.",
-            aveClause: "som åbenbarede sin herlighed i Kana"
+            aveClause: "som forvandlede vand til vin i Kana"
           },
           {
             title: "Kundgørelsen af Guds rige",
@@ -150,7 +151,7 @@
           {
             title: "Forklarelsen på bjerget",
             body: "Vi betænker, hvordan Jesus på bjerget åbenbarer sin guddommelige herlighed for Peter, Jakob og Johannes, og Faderens stemme siger: 'Hør ham!' (Matt 17,5). Lad os bede om styrke til at følge Kristus.",
-            aveClause: "som blev forherliget på bjerget"
+            aveClause: "som blev forklaret på bjerget"
           },
           {
             title: "Eukaristiens indstiftelse",
@@ -167,27 +168,27 @@
           {
             title: "Jesu angst i Getsemane have",
             body: "Vi betænker, hvordan Jesus i Getsemane beder i angst: 'Fader, hvis det er muligt, lad denne kalk gå mig forbi.' (Matt 26,39). Han accepterer Guds vilje. Lad os bede om styrke til at bære lidelse.",
-            aveClause: "som led dødsangst i Getsemane"
+            aveClause: "som svedte blod for os"
           },
           {
             title: "Piskningen ved søjlen",
             body: "Vi betænker, hvordan Jesus piskes grusomt ved søjlen og bærer smerten for vores synder. Lad os bede om bod og afholdenhed fra synd.",
-            aveClause: "som blev pisket for vores synder"
+            aveClause: "som blev hudstrøget for os"
           },
           {
             title: "Tornerning af Jesus",
             body: "Vi betænker, hvordan Jesus hånes med en tornekrone og tager imod spot for vores stolthed. Lad os bede om ydmyghed og tålmodighed i ydmygelser.",
-            aveClause: "som blev tornekronet"
+            aveClause: "som blev kronet med torne for os"
           },
           {
             title: "Jesus bærer korset",
             body: "Vi betænker, hvordan Jesus bærer det tunge kors til Golgata, idet han lider for vores frelse. Lad os bede om kraft til at bære vores kors med kærlighed.",
-            aveClause: "som bar korset for os"
+            aveClause: "som bar det tunge kors for os"
           },
           {
             title: "Korsfæstelsen og døden",
             body: "Vi betænker, hvordan Jesus dør på korset og siger: 'Det er fuldbragt!' (Joh 19,30). Han giver sit liv for os. Lad os bede om taknemmelighed for hans offer og nåde til at dø fra synden.",
-            aveClause: "som døde på korset for os"
+            aveClause: "som blev korsfæstet for os"
           }
         ]
       },
@@ -203,23 +204,23 @@
           },
           {
             title: "Himmelfarten",
-            body: "Vi betænker, hvordan Jesus farer op til himlen og lover at være med os alle dage. Lad os bede om håb om himlen og iver efter at gøre hans vilje.",
-            aveClause: "som fór op til himlen"
+            body: "Vi betænker, hvordan Jesus farer op til Himlen og lover at være med os alle dage. Lad os bede om håb om Himlen og iver efter at gøre hans vilje.",
+            aveClause: "som opfor op til Himlen"
           },
           {
             title: "Helligåndens komme (Pinsedag)",
             body: "Vi betænker, hvordan Helligånden kommer over apostlene i form af ildtunger og giver dem kraft til at forkynde. Lad os bede om Helligåndens gaver.",
-            aveClause: "som sendte Helligånden"
+            aveClause: "som nedsendte Helligånden"
           },
           {
-            title: "Marias optagelse i himlen",
-            body: "Vi betænker, hvordan Maria tages op til himlen med sjæl og legeme som en frugt af hendes troskab. Lad os bede om renhed og hengivenhed til Gud.",
-            aveClause: "som optog dig i himlen"
+            title: "Marias optagelse i Himlen",
+            body: "Vi betænker, hvordan Maria tages op til Himlen med sjæl og legeme som en frugt af hendes troskab. Lad os bede om renhed og hengivenhed til Gud.",
+            aveClause: "som optog dig i Himlen"
           },
           {
-            title: "Marias kroning som himlens og jordens dronning",
-            body: "Vi betænker, hvordan Maria krones som himlens dronning og beder for os. Lad os bede om hendes forbøn og en dybere kærlighed til hende.",
-            aveClause: "som kronede dig som himlens dronning"
+            title: "Marias kroning som Himlens og jordens dronning",
+            body: "Vi betænker, hvordan Maria krones som Himlens dronning og beder for os. Lad os bede om hendes forbøn og en dybere kærlighed til hende.",
+            aveClause: "som kronede dig i Himlen"
           }
         ]
       }
@@ -244,31 +245,31 @@
       const set = MYSTERIES[setKey];
       const seq = [];
       // Indledning
-      seq.push({ kind: 'Intro', title: prayers.signOfCross.title, body: prayers.signOfCross.body, bead: 0 });
-      seq.push({ kind: 'Intro', title: prayers.creed.title, body: prayers.creed.body, bead: 0 });
-      seq.push({ kind: 'Intro', title: prayers.pater.title, body: prayers.pater.body, bead: 1 });
+      seq.push({ kind: 'Intro', title: prayers.signOfCross.title, body: prayers.signOfCross.body});
+      seq.push({ kind: 'Intro', title: prayers.creed.title, body: prayers.creed.body});
+      seq.push({ kind: 'Intro', title: prayers.pater.title, body: prayers.pater.body});
       // 3 Ave Maria (tro, håb, kærlighed)
-      const virtues = ['for tro', 'for håb', 'for kærlighed'];
+      const virtues = ['som forøger vor tro', 'som styrker vort håb', 'som opflammer vor kærlighed'];
       virtues.forEach((v, i) => {
-        const aveBody = prayers.ave.body.replace('Jesus.', `Jesus, som forøger vor ${v.split('for ')[1]}.`);
-        seq.push({ kind: 'Intro', title: `Ave Maria (${v})`, body: aveBody, bead: 2 + i });
+        const aveBody = prayers.ave.body.replace('Jesus.', `Jesus, ${v}.`);
+        seq.push({ kind: 'Intro', title: `Ave Maria (${v.split(' ').at(-1)})`, body: aveBody});
       });
-      seq.push({ kind: 'Intro', title: prayers.gloria.title, body: prayers.gloria.body, bead: 5 });
+      seq.push({ kind: 'Intro', title: prayers.gloria.title, body: prayers.gloria.body});
 
       // 5 dekader
       set.items.forEach((myst, i) => {
-        seq.push({ kind: 'Mysterium', title: `${i + 1}. ${myst.title}`, body: myst.body, bead: null });
-        seq.push({ kind: 'Dekade', title: prayers.pater.title, body: prayers.pater.body, bead: 6 + i * 11 });
+        seq.push({ kind: 'Mysterium', title: `${i + 1}. ${myst.title}`, body: myst.body });
+        seq.push({ kind: 'Dekade', title: prayers.pater.title, body: prayers.pater.body });
         const aveBody = prayers.ave.body.replace('Jesus.', `Jesus, ${myst.aveClause}.`) + '\n\n(Gentages 10 gange)';
-        seq.push({ kind: 'Dekade', title: `Ave Maria (10 gange)`, body: aveBody, bead: 7 + i * 11 });
-        seq.push({ kind: 'Dekade', title: prayers.gloria.title, body: prayers.gloria.body, bead: 17 + i * 11 });
-        seq.push({ kind: 'Dekade', title: prayers.fatima.title, body: prayers.fatima.body, bead: null });
+        seq.push({ kind: 'Dekade', title: `Ave Maria (10 gange)`, body: aveBody });
+        seq.push({ kind: 'Dekade', title: prayers.gloria.title, body: prayers.gloria.body });
+        seq.push({ kind: 'Dekade', title: prayers.fatima.title, body: prayers.fatima.body });
       });
 
       // Afslutning
-      seq.push({ kind: 'Afslutning', title: prayers.salveRegina.title, body: prayers.salveRegina.body, bead: null });
-      seq.push({ kind: 'Afslutning', title: prayers.closing.title, body: prayers.closing.body, bead: null });
-      seq.push({ kind: 'Afslutning', title: prayers.signOfCross.title, body: prayers.signOfCross.body, bead: null });
+      seq.push({ kind: 'Afslutning', title: prayers.salveRegina.title, body: prayers.salveRegina.body});
+      seq.push({ kind: 'Afslutning', title: prayers.closing.title, body: prayers.closing.body});
+      seq.push({ kind: 'Afslutning', title: prayers.signOfCross.title, body: prayers.signOfCross.body});
 
       return { seq, set };
     }
@@ -321,7 +322,6 @@
       renderOverview();
       // Første trin
       renderStep();
-      savePrefs();
     }
 
     function renderOverview() {
@@ -352,20 +352,9 @@
     function prev() { if (state.i > 0) { state.i--; renderStep(); } }
     function restart() { state.i = 0; renderStep(); }
 
-    function savePrefs() {
-      const data = { daySel: els.daySelect.value, setKey: state.setKey };
-      localStorage.setItem('rosaryDA', JSON.stringify(data));
-    }
-
     function loadPrefs() {
-      try {
-        const data = JSON.parse(localStorage.getItem('rosaryDA') || '{}');
-        els.daySelect.value = getTodayWeekday(); // Always default to current day on load
-        selectSetForUI(); // Load the set based on the current day
-      } catch {
-        els.daySelect.value = getTodayWeekday(); // Default to current day on error
-        selectSetForUI();
-      }
+      els.daySelect.value = getTodayWeekday(); // Default to current day on error
+      selectSetForUI();
     }
 
     // Events

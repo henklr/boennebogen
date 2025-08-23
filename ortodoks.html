@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="da">
 <head>
+  <link rel="icon" href="favicon.png" type="image/png">
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Ortodokse Bønner</title>
   <meta name="theme-color" content="#0f172a">
   <link rel="stylesheet" href="style.css">
+  <link rel="preload" href="bg-main-menu.jpg" as="image">
   <link rel="preload" href="bg-ortodoks-morgen.jpg" as="image">
   <link rel="preload" href="bg-ortodoks-aften.jpg" as="image">
   <link rel="preload" href="bg-joyful.jpg" as="image">
@@ -17,7 +19,7 @@
   <div class="bg"></div>
   <header>
     <div class="inner">
-      <a href="index.html" class="home-btn" aria-label="Hjem" title="Tilbage til forsiden">◀</a>
+      <a href="/" class="home-btn" aria-label="Hjem" title="Tilbage til forsiden">◀</a>
       <!-- <h1>Ortodokse Bønner</h1> -->
       <div class="row">
         <label class="pill" title="Vælg bønnesæt">
@@ -207,7 +209,6 @@
       renderOverview();
       // Første trin
       renderStep();
-      savePrefs();
     }
 
     function renderOverview() {
@@ -238,32 +239,11 @@
     function prev() { if (state.i > 0) { state.i--; renderStep(); } }
     function restart() { state.i = 0; renderStep(); }
 
-    function savePrefs() {
-      const data = { setSel: els.setSelect.value, setKey: state.setKey };
-      localStorage.setItem('orthodoxPrayersDA', JSON.stringify(data));
-    }
-
     function loadPrefs() {
-      try {
-        const data = JSON.parse(localStorage.getItem('orthodoxPrayersDA') || '{}');
-        // Check if a saved preference exists
-        if (data.setSel) {
-          els.setSelect.value = data.setSel;
-        } else {
-          // Set based on time of day
-          const now = new Date();
-          const hour = now.getHours();
-          // Morning prayers before 6 PM (18:00), Evening prayers after
-          els.setSelect.value = hour < 18 ? '0' : '1';
-        }
-        selectSetForUI();
-      } catch {
-        // Fallback to time-based selection on error
-        const now = new Date();
-        const hour = now.getHours();
-        els.setSelect.value = hour < 18 ? '0' : '1';
-        selectSetForUI();
-      }
+      const now = new Date();
+      const hour = now.getHours();
+      els.setSelect.value = hour < 15 ? '0' : '1';
+      selectSetForUI();
     }
 
     // Events
