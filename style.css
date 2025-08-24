@@ -219,3 +219,14 @@ select {
     grid-template-columns: 1fr 1fr 1fr; 
     gap: 10px; 
 }
+.info-bar { 
+    max-width: 800px; 
+    margin: 0px auto; 
+    padding: 0px 0px;
+    text-align: center;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+.info-bar p {
+    margin: 0px auto;
+}
