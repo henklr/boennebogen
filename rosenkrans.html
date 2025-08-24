@@ -14,13 +14,13 @@
   <link rel="preload" href="bg-luminous.jpg" as="image">
   <link rel="preload" href="bg-sorrowful.jpg" as="image">
   <link rel="preload" href="bg-glorious.jpg" as="image">
+  <script src="prayers.js"></script>
 </head>
 <body class="rosenkrans">
   <div class="bg"></div>
   <header>
     <div class="inner">
       <a href="/" class="home-btn" aria-label="Hjem" title="Tilbage til forsiden">◀</a>
-      <!-- <h1>Rosenkrans</h1> -->
       <div class="row">
         <label class="pill" title="Vælg dag">
           <select id="daySelect" aria-label="Vælg dag">
@@ -82,18 +82,6 @@
   </nav>
 
   <script>
-    // --- Data: bønner på dansk ---
-    const prayers = {
-      signOfCross: { title: "Korsets tegn", body: "I Faderens og Sønnens og Helligåndens navn. Amen." },
-      creed: { title: "Apostolsk trosbekendelse", body: `Jeg tror på Gud Fader, den Almægtige, Himlens og jordens skaber. Jeg tror på Jesus Kristus, guds enbårne Søn, vor Herre, som blev undfanget ved Helligånden, født af jomfru Maria, pint under Pontius Pilatus, korsfæstet, død og begravet, nedfor til dødsriget, opstod på den tredje dag fra de døde, opfor til himmels, sidder ved Gud Faders, den Almægtiges, højre hånd, skal derfra komme igen for at dømme de levende og de døde. Jeg tror på Helligånden, den hellige katolske kirke, de helliges samfund, syndernes forladelse, kødets opstandelse og det evige liv. Amen.` },
-      pater: { title: "Fadervor", body: `Fader vor, du som er i Himlene! Helliget vorde dit navn, komme dit rige; ske din vilje som i Himlen således også på jorden; giv os i dag vort daglige brød; og forlad os vor skyld, som også vi forlader vore skyldnere; og led os ikke ind i fristelse, men fri os fra det onde. Amen.` },
-      ave: { title: "Ave Maria", body: `Hil dig Maria, fuld af nåde, Herren er med dig. Velsignet er du blandt kvinder, og velsignet er dit livs frugt, Jesus.\nHellige Maria, Guds Moder, bed for os syndere, nu og i vor dødstime. Amen.` },
-      gloria: { title: "Ære være Faderen", body: `Ære være Faderen og Sønnen og Helligånden; som det var i begyndelsen, så nu og altid og i al evighed. Amen.` },
-      fatima: { title: "Fatimabøn", body: `O min Jesus, forlad os vore synder, frels os fra helvedes ild; før alle sjæle ind i Himlen, især dem, som trænger mest til din barmhjertighed. Amen.` },
-      salveRegina: { title: "Hil dig Dronning (Salve Regina)", body: `Hil dig, Dronning, barmhjertighedens moder, vort liv, vor mildhed og vort håb, hil dig. Til dig råber vi, Evas forviste børn; til dig sukker vi, klagende og grædende i denne tåredal. Kom derfor, vor talskvinde, vend dine barmhjertige øjne mod os, og efter dette landflygtigheds liv, vis os Jesus, din livs frugt, velsignet. O milde, o fromme, o søde jomfru Maria.` },
-      closing: { title: "Afslutningsbøn", body: `Lad os bede: Gud, hvis enbårne Søn ved sit liv, sin død og opstandelse har skænket os frelsen, giv os, at vi, når vi i den hellige Rosenkrans ærbødigt betænker disse mysterier, må efterligne det, de indeholder, og opnå det, de lover, ved samme Kristus, vor Herre. Amen.` }
-    };
-
     // Mysterier (DA) med traditionelle forklaringer og Ave Maria-tilføjelser
     const MYSTERIES = {
       Joyful: {
@@ -246,7 +234,7 @@
       const seq = [];
       // Indledning
       seq.push({ kind: 'Intro', title: prayers.signOfCross.title, body: prayers.signOfCross.body});
-      seq.push({ kind: 'Intro', title: prayers.creed.title, body: prayers.creed.body});
+      seq.push({ kind: 'Intro', title: prayers.creed_apostolic.title, body: prayers.creed_apostolic.body});
       seq.push({ kind: 'Intro', title: prayers.pater.title, body: prayers.pater.body});
       // 3 Ave Maria (tro, håb, kærlighed)
       const virtues = ['som forøger vor tro', 'som styrker vort håb', 'som opflammer vor kærlighed'];
