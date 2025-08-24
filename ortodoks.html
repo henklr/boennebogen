@@ -88,12 +88,11 @@
         items: [
           { title: prayers.signOfCross.title, body: prayers.signOfCross.body, kind: "Indledning" },
           { title: prayers.tolder.title, body: prayers.tolder.body, kind: "Indledning" },
-          { title: prayers.forbønner.title, body: prayers.forbønner.body, kind: "Indledning" },
+          { title: prayers.forbøn.title, body: prayers.forbøn.body, kind: "Indledning" },
           { title: prayers.introGlory.title, body: prayers.introGlory.body, kind: "Indledning" },
           { title: prayers.heavenlyKing.title, body: prayers.heavenlyKing.body, kind: "Indledning" },
           { title: prayers.trisagion.title, body: prayers.trisagion.body, kind: "Indledning" },
           { title: prayers.trinity.title, body: prayers.trinity.body, kind: "Indledning" },
-          { title: prayers.jesusPrayer.title, body: prayers.jesusPrayer.body, kind: "Indledning" },
           { title: prayers.gloria.title, body: prayers.gloria.body, kind: "Indledning" },
           { title: prayers.pater.title, body: prayers.pater.body, kind: "Indledning" },
           { title: prayers.creed_orthodox.title, body: prayers.creed_orthodox.body, kind: "Hovedbøn" },
@@ -192,7 +191,7 @@
       const s = state.sequence[state.i];
       els.currentKind.textContent = s.kind;
       els.currentTitle.textContent = s.title;
-      els.currentBody.textContent = s.body;
+      els.currentBody.innerHTML = s.body.replace(/\n/g, "<br>");
       // Progress
       const pct = ((state.i + 1) / state.sequence.length) * 100;
       els.progressFill.style.width = pct.toFixed(1) + '%';

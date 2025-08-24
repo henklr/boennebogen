@@ -7,8 +7,8 @@ const prayers = {
     title: "Tolderens bøn", 
     body: "Herre, forbarm dig over mig, en synder!" 
   },
-  forbønner: { 
-    title: "Forbønner", 
+  forbøn: { 
+    title: "Forbønsbøn til Kristus", 
     body: "Herre, Jesus Kristus, Guds Søn, hør forbønnerne fra Din alrene Moder og fra alle Dine hellige, og forbarm Dig over os. Amen." 
   },
   introGlory: { 
@@ -33,7 +33,7 @@ const prayers = {
   },
   trinity: { 
     title: "Bøn til Treenigheden", 
-    body: "Allhellige Treenighed, forbarm dig over os. Herre, rens os fra vore synder. Hersker, forlad os vore misgerninger. Hellige, kom til os, og helbred vore skrøbeligheder for Dit Navns skyld." 
+    body: "Allhellige Treenighed, forbarm dig over os. Herre, rens os fra vore synder. Hersker, forlad os vore misgerninger. Hellige, kom til os, og helbred vore skrøbeligheder for Dit Navns skyld.\n\nHerre, forbarm Dig (tre gange)" 
   },
   jesusPrayer: { 
     title: "Jesusbønnen (tre gange)", 
