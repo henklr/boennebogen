@@ -150,27 +150,28 @@ summary { cursor: pointer; }
     gap: 8px;
 }
 .pill { 
+    /* position: relative; */
     display: inline-flex; 
     align-items: center; 
     gap: 8px; 
-    padding: 8px 10px; 
+    padding: 12px 14px;
     border: 1px solid var(--border); 
-    border-radius: 999px; 
+    border-radius: 12px; 
     background: rgba(54, 16, 16, 0.4); 
     backdrop-filter: blur(10px) saturate(120%); 
     transition: background .2s ease; 
+    font-weight: 600; 
 }
 .pill select {
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-
-  border: none;
-  background: transparent;   /* baggrund fra .pill */
-  color: var(--text);
-  font: inherit;
-  padding: 6px 28px 6px 8px; /* ekstra plads til pilen */
-  cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: none;
+    background: transparent;
+    color: var(--text);
+    padding: 0px 24px 0px 0px; 
+    font-weight: 600; 
+    cursor: pointer;
 }
 .pill::after {
   content: "▼";
@@ -180,7 +181,7 @@ summary { cursor: pointer; }
   transform: translateY(-50%);
   font-size: 0.7em;
   color: var(--muted);
-  pointer-events: none; /* så klik stadig rammer select */
+  pointer-events: none;
 }
 .pill:hover { 
     background: rgba(54, 16, 16, 0.55); 

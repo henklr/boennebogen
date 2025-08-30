@@ -22,6 +22,12 @@
     <div class="inner">
       <a href="/" class="home-btn" aria-label="Hjem" title="Tilbage til forsiden">◀</a>
       <div class="row">
+        <label class="pill" title="Vælg version">
+          <select id="versionSelect" aria-label="Vælg version">
+            <option value="false">Fuld version</option>
+            <option value="true">Simpel version</option>
+          </select>
+        </label>
         <label class="pill" title="Vælg dag">
           <select id="daySelect" aria-label="Vælg dag">
             <option value="0">Søndag</option>
@@ -229,7 +235,7 @@
     }
 
     // Byg hele rækken af trin for en valgt mysterierække
-    function buildSequence(setKey) {
+    function buildSequence(setKey, isSimpleVersion) {
       const set = MYSTERIES[setKey];
       const seq = [];
       // Indledning
@@ -239,7 +245,7 @@
       // 3 Ave Maria (tro, håb, kærlighed)
       const virtues = ['som forøger vor tro', 'som styrker vort håb', 'som opflammer vor kærlighed'];
       virtues.forEach((v, i) => {
-        const aveBody = prayers.ave.body.replace('Jesus.', `Jesus, ${v}.`);
+        const aveBody = isSimpleVersion ? prayers.ave.body : prayers.ave.body.replace('Jesus.', `Jesus, ${v}.`);
         seq.push({ kind: 'Intro', title: `Ave Maria (${v.split(' ').at(-1)})`, body: aveBody});
       });
       seq.push({ kind: 'Intro', title: prayers.gloria.title, body: prayers.gloria.body});
@@ -248,7 +254,7 @@
       set.items.forEach((myst, i) => {
         seq.push({ kind: 'Mysterium', title: `${i + 1}. ${myst.title}`, body: myst.body });
         seq.push({ kind: 'Dekade', title: prayers.pater.title, body: prayers.pater.body });
-        const aveBody = prayers.ave.body.replace('Jesus.', `Jesus, ${myst.aveClause}.`) + '\n\n(Gentages 10 gange)';
+        const aveBody = (isSimpleVersion ? prayers.ave.body : prayers.ave.body.replace('Jesus.', `Jesus, ${myst.aveClause}.`)) + '\n\n(Gentages 10 gange)';
         seq.push({ kind: 'Dekade', title: `Ave Maria (10 gange)`, body: aveBody });
         seq.push({ kind: 'Dekade', title: prayers.gloria.title, body: prayers.gloria.body });
         seq.push({ kind: 'Dekade', title: prayers.fatima.title, body: prayers.fatima.body });
@@ -266,11 +272,13 @@
     const state = {
       setKey: null,
       sequence: [],
-      i: 0
+      i: 0,
+      isSimpleVersion: false
     };
 
     const els = {
       daySelect: document.getElementById('daySelect'),
+      versionSelect: document.getElementById('versionSelect'),
       mysteryTitle: document.getElementById('mysteryTitle'),
       mysterySubtitle: document.getElementById('mysterySubtitle'),
       currentKind: document.getElementById('currentKind'),
@@ -297,7 +305,7 @@
     }
 
     function loadSet(key) {
-      const built = buildSequence(key);
+      const built = buildSequence(key, state.isSimpleVersion);
       state.setKey = key;
       state.sequence = built.seq;
       state.i = 0;
@@ -317,7 +325,7 @@
       state.sequence.forEach((s, idx) => {
         const div = document.createElement('div');
         div.className = 'item';
-        div.innerHTML = `<div class="kicker">${s.kind}</div><div><strong>${idx + 1}.</strong> ${s.title}</div>`;
+        div.innerHTML = `<div class="kicker">${s.kind}</div><div> ${s.title}</div>`;
         div.addEventListener('click', () => { state.i = idx; renderStep(); });
         els.overview.appendChild(div);
       });
@@ -340,8 +348,14 @@
     function prev() { if (state.i > 0) { state.i--; renderStep(); } }
     function restart() { state.i = 0; renderStep(); }
 
+    function toggleVersion() {
+      state.isSimpleVersion = els.versionSelect.value === 'true';
+      selectSetForUI();
+    }
+
     function loadPrefs() {
       els.daySelect.value = getTodayWeekday(); // Default to current day on error
+      els.versionSelect.value = state.isSimpleVersion ? 'true' : 'false'; // Set default version
       selectSetForUI();
     }
 
@@ -350,6 +364,7 @@
     els.prevBtn.addEventListener('click', prev);
     els.restartBtn.addEventListener('click', restart);
     els.daySelect.addEventListener('change', () => { selectSetForUI(); });
+    els.versionSelect.addEventListener('change', toggleVersion);
 
     // Gestus: tryk på teksten for næste
     document.getElementById('currentCard').addEventListener('click', (e) => {

@@ -86,18 +86,13 @@
         subtitle: "Bedes dagligt ved opvågnen",
         image: "bg-ortodoks-morgen.jpg",
         items: [
-          { title: prayers.signOfCross.title, body: prayers.signOfCross.body, kind: "Indledning" },
-          { title: prayers.tolder.title, body: prayers.tolder.body, kind: "Indledning" },
-          { title: prayers.forbøn.title, body: prayers.forbøn.body, kind: "Indledning" },
-          { title: prayers.introGlory.title, body: prayers.introGlory.body, kind: "Indledning" },
-          { title: prayers.heavenlyKing.title, body: prayers.heavenlyKing.body, kind: "Indledning" },
-          { title: prayers.trisagion.title, body: prayers.trisagion.body, kind: "Indledning" },
-          { title: prayers.trinity.title, body: prayers.trinity.body, kind: "Indledning" },
-          { title: prayers.gloria.title, body: prayers.gloria.body, kind: "Indledning" },
-          { title: prayers.pater.title, body: prayers.pater.body, kind: "Indledning" },
-          { title: prayers.creed_orthodox.title, body: prayers.creed_orthodox.body, kind: "Hovedbøn" },
-          { title: prayers.morningPrayer.title, body: prayers.morningPrayer.body, kind: "Afslutning" },
-          { title: prayers.signOfCross.title, body: prayers.signOfCross.body, kind: "Afslutning" }
+          { title: prayers.signOfCross.title, body: prayers.signOfCross.body, kind: "" },
+          { title: prayers.tolder.title, body: prayers.tolder.body, kind: "" },
+          { title: prayers.indledning_othodox.title, body: prayers.indledning_othodox.body, kind: "" },
+          { title: prayers.morgenTroparier.title, body: prayers.morgenTroparier.body, kind: "" },
+          { title: prayers.creed_orthodox.title, body: prayers.creed_orthodox.body, kind: "" },
+          { title: prayers.morningPrayer.title, body: prayers.morningPrayer.body, kind: "" },
+          { title: prayers.signOfCross.title, body: prayers.signOfCross.body, kind: "" }
         ]
       },
       Evening: {
@@ -105,14 +100,14 @@
         subtitle: "Bedes dagligt før søvn",
         image: "bg-ortodoks-aften.jpg",
         items: [
-          { title: prayers.signOfCross.title, body: prayers.signOfCross.body, kind: "Indledning" },
-          { title: prayers.tolder.title, body: prayers.tolder.body, kind: "Indledning" },
-          { title: prayers.trisagion.title, body: prayers.trisagion.body, kind: "Indledning" },
-          { title: prayers.jesusPrayer.title, body: prayers.jesusPrayer.body, kind: "Hovedbøn" },
-          { title: prayers.eveningForgiveness.title, body: prayers.eveningForgiveness.body, kind: "Hovedbøn" },
-          { title: prayers.theotokos.title, body: prayers.theotokos.body, kind: "Hovedbøn" },
-          { title: prayers.eveningPrayer.title, body: prayers.eveningPrayer.body, kind: "Afslutning" },
-          { title: prayers.signOfCross.title, body: prayers.signOfCross.body, kind: "Afslutning" }
+          { title: prayers.signOfCross.title, body: prayers.signOfCross.body, kind: "" },
+          { title: prayers.tolder.title, body: prayers.tolder.body, kind: "" },
+          { title: prayers.trisagion.title, body: prayers.trisagion.body, kind: "" },
+          { title: prayers.jesusPrayer.title, body: prayers.jesusPrayer.body, kind: "" },
+          { title: prayers.eveningForgiveness.title, body: prayers.eveningForgiveness.body, kind: "" },
+          { title: prayers.theotokos.title, body: prayers.theotokos.body, kind: "" },
+          { title: prayers.eveningPrayer.title, body: prayers.eveningPrayer.body, kind: "" },
+          { title: prayers.signOfCross.title, body: prayers.signOfCross.body, kind: "" }
         ]
       }
     };
@@ -181,7 +176,7 @@
       state.sequence.forEach((s, idx) => {
         const div = document.createElement('div');
         div.className = 'item';
-        div.innerHTML = `<div class="kicker">${s.kind}</div><div><strong>${idx + 1}.</strong> ${s.title}</div>`;
+        div.innerHTML = `<div class="kicker">${s.kind}</div><div> ${s.title}</div>`;
         div.addEventListener('click', () => { state.i = idx; renderStep(); });
         els.overview.appendChild(div);
       });

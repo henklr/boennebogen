@@ -5,10 +5,18 @@ const prayers = {
   },
   tolder: { 
     title: "Tolderens bøn", 
-    body: "Herre, forbarm dig over mig, en synder!" 
+    body: "Herre, forbarm dig over mig, en synder!"
   },
-  forbøn: { 
-    title: "Forbønsbøn til Kristus", 
+  indledning_othodox: { 
+    title: "Indledningsbønner", 
+    body: "Herre, Jesus Kristus, Guds Søn, hør forbønnerne fra Din alrene Moder og fra alle Dine hellige, og forbarm Dig over os. Amen.\n\nÆre være Dig, vor Gud, ære være Dig.\n\nHimmelske Konge og Trøster, Sandheds Ånd, som er alle steder og fylder alt, det godes Kilde, livets Giver, kom, tag Din bolig i os, rens os fra alt ondt, og frels, Du Algode, vore sjæle.\n\nHellige Gud, hellige Stærke, hellige Udødelige, forbarm Dig over os. (tre gange)\n\nAlhellige Treenighed, forbarm Dig over os; Herre, rens os fra vore synder; Hersker, forlad os vore overtrædelser; Hellige, kom til os, og helbred vore skrøbeligheder for Dit Navns skyld.\n\nHerre, forbarm Dig. (tre gange)\n\nÆre være Faderen og Sønnen og Helligånden; Nu og altid og i al evighed. Amen.\n\nFader vor, Du, som er i himlene, helliget vorde Dit Navn, komme Dit Rige. Ske Din vilje på Jorden, som den sker i Himmelen. Giv os i dag vort daglige brød, og forlad os vor skyld, som også vi forlader vore skyldnere. Og led os ej i fristelse, men frels os fra det onde." 
+  },
+  morgenTroparier: { 
+    title: "Morgentroparier til Den Hellige Treenighed", 
+    body: "Vi er stået op fra søvnen, og vi falder ned for Dig, Du Gode. Vi synger englenes sang for Dig, Du Stærke: Hellig, hellig, hellig er Du, vor Gud.\nFor Gudsmoders forbønner skyld, forbarm Dig over os.\n\nÆre være Faderen og Sønnen og Helligånden.\n\nDu har rejst mig fra søvnen, Herre, oplys da også mine tanker og mit hjerte. Oplade mine læber, så jeg kan synge Din pris, alhellige Treenighed: Hellig, hellig, hellig er Du, vor Gud.\nFor Gudsmoders forbønners skyld, forbarm Dig over os.\n\nNu og altid og i al evighed.\n\nUventet kommer Dommeren, og alles gerninger skal åbenbares. Men ved midnat råber vi i gudsfrygt: Hellig, hellig, hellig er Du, vor Gud.\nFor Gudsmoders forbønners skyld forbarm Dig over os.\n\nHerre forbarm Dig. (tolv gange)" 
+  },  
+  afslutning_othodox: { 
+    title: "Afslutningsbønner", 
     body: "Herre, Jesus Kristus, Guds Søn, hør forbønnerne fra Din alrene Moder og fra alle Dine hellige, og forbarm Dig over os. Amen." 
   },
   introGlory: { 
@@ -16,6 +24,10 @@ const prayers = {
     body: "Ære være dig, vor Gud, ære være dig." 
   },
   gloria: { 
+    title: "Ære være Faderen", 
+    body: "Ære være Faderen og Sønnen og Helligånden; som det var i begyndelsen, så nu og altid og i al evighed. Amen." 
+  },
+  gloria_orthodox: { 
     title: "Ære være Faderen", 
     body: "Ære være Faderen og Sønnen og Helligånden; som det var i begyndelsen, så nu og altid og i al evighed. Amen." 
   },
@@ -36,8 +48,8 @@ const prayers = {
     body: "Allhellige Treenighed, forbarm dig over os. Herre, rens os fra vore synder. Hersker, forlad os vore misgerninger. Hellige, kom til os, og helbred vore skrøbeligheder for Dit Navns skyld.\n\nHerre, forbarm Dig (tre gange)" 
   },
   jesusPrayer: { 
-    title: "Jesusbønnen (tre gange)", 
-    body: "Herre Jesus Kristus, Guds Søn, forbarm dig over mig, en synder. (Gentages tre gange)" 
+    title: "Jesusbønnen", 
+    body: "Herre Jesus Kristus, Guds Søn, forbarm dig over mig, en synder." 
   },
   creed_orthodox: { 
     title: "Trosbekendelsen (Ortodoks)", 
