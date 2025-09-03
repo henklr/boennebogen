@@ -5,7 +5,7 @@ const prayers = {
   },
   tolder: { 
     title: "Tolderens bøn", 
-    body: "Herre, forbarm dig over mig, en synder!"
+    body: "Herre, forbarm Dig over mig, en synder!"
   },
   indledning_othodox: { 
     title: "Indledningsbønner", 
@@ -29,15 +29,15 @@ const prayers = {
   },
   salme51: { 
     title: "Salme 51", 
-    body: "Til Sangmesteren. En Salme af David, da Profeten Natan kom til ham, efter at han havde været hos Batseba.\n\n1. Gud! vær mig nådig efter din Miskundhed,\nudslet mine Overtrædelser efter din store Barmhjertighed!\n\n2. Tvæt mig vel fra min Misgerning,\nog rens mig fra min Synd.\n\n3. Thi mine Overtrædelser kender jeg,\nog min Synd er mig altid for Øje.\n\n4. Imod dig alene har jeg syndet,\ndet, som er ondt i dine Øjne, gjorde jeg,\nfor at du må stå retfærdig, når du taler,\nren, når du dømmer.\n\n5. Se, med Skyld blev jeg født,\nmed Synd blev jeg undfanget af min Moder.\n\n6. Se, du har Lyst til Sandhed i det inderste,\ndu lærer mig Visdom i Hjertets Dyb.\n\n7. Rens mig med Isop, så jeg bliver ren,\ntvæt mig, så jeg bliver hvidere end Sne.\n\n8. Lad mig høre Fryd og Glæde,\nlad de Ben, du har knust, juble.\n\n9. Skjul dit Ansigt for mine Synder,\nudslet alle mine Misgerninger.\n\n10. Skab mig, Gud, et rent Hjerte,\nforny inden i mig en stadig Ånd.\n\n11. Kast mig ikke bort fra dit Åsyn,\ntag ikke din hellige Ånd fra mig!\n\n12. Giv mig din Frelses Fryd igen,\nhold mig oppe med en villig Ånd.\n\n13. Jeg vil lære Overtrædere dine Veje,\nog Syndere skal omvende sig til dig.\n\n14. Fri mig fra Blodskyld, Gud, min Frelses Gud,\nmin Tunge skal juble over din Retfærdighed.\n\n15. Herre, oplad mine Læber,\nså min Mund kan forkynde din Pris.\n\n16. Thi du har ikke Lyst til Slagtoffer, ellers bragte jeg det,\ntil Brændoffer har du ikke Behag.\n\n17. Gud, et sønderbrudt Hjerte er mit Offer,\net sønderknust Hjerte, Gud, ringeagter du ikke.\n\n18. Gør vel imod Zion i din Nåde,\nopbyg Jerusalems Mure!\n\n19. Da skal du have Behag i rette Ofre,\nBrændofre og Helofer;\nda skal man ofre Tyre på dit Alter." 
+    body: "Til Sangmesteren. En Salme af David, da Profeten Natan kom til ham, efter at han havde været hos Batseba.\n\n1. Gud! vær mig nådig efter Din Miskundhed,\nudslet mine Overtrædelser efter Din store Barmhjertighed!\n\n2. Tvæt mig vel fra min Misgerning,\nog rens mig fra min Synd.\n\n3. Thi mine Overtrædelser kender jeg,\nog min Synd er mig altid for Øje.\n\n4. Imod Dig alene har jeg syndet,\ndet, som er ondt i dine Øjne, gjorde jeg,\nfor at Du må stå retfærdig, når Du taler,\nren, når Du dømmer.\n\n5. Se, med Skyld blev jeg født,\nmed Synd blev jeg undfanget af min Moder.\n\n6. Se, Du har Lyst til Sandhed i det inderste,\ndu lærer mig Visdom i Hjertets Dyb.\n\n7. Rens mig med Isop, så jeg bliver ren,\ntvæt mig, så jeg bliver hvidere end Sne.\n\n8. Lad mig høre Fryd og Glæde,\nlad de Ben, Du har knust, juble.\n\n9. Skjul dit Ansigt for mine Synder,\nudslet alle mine Misgerninger.\n\n10. Skab mig, Gud, et rent Hjerte,\nforny inden i mig en stadig Ånd.\n\n11. Kast mig ikke bort fra dit Åsyn,\ntag ikke Din hellige Ånd fra mig!\n\n12. Giv mig Din Frelses Fryd igen,\nhold mig oppe med en villig Ånd.\n\n13. Jeg vil lære Overtrædere dine Veje,\nog Syndere skal omvende sig til Dig.\n\n14. Fri mig fra Blodskyld, Gud, min Frelses Gud,\nmin Tunge skal juble over Din Retfærdighed.\n\n15. Herre, oplad mine Læber,\nså min Mund kan forkynde Din Pris.\n\n16. Thi Du har ikke Lyst til Slagtoffer, ellers bragte jeg det,\ntil Brændoffer har Du ikke Behag.\n\n17. Gud, et sønderbrudt Hjerte er mit Offer,\net sønderknust Hjerte, Gud, ringeagter Du ikke.\n\n18. Gør vel imod Zion i Din Nåde,\nopbyg Jerusalems Mure!\n\n19. Da skal Du have Behag i rette Ofre,\nBrændofre og Helofer;\nda skal man ofre Tyre på dit Alter." 
   },
   bønTilSkytsenglen: { 
     title: "Bøn til Skytsenglen", 
-    body: "Hellige engel, som våger over min arme sjæl og mit syndefulde liv; forlad ikke mig, syndige menneske, og vig ej fra mig for min svagheds skyld. Lad ikke den onde ånd få adgang til at herske over mig ved overgreb på dette, mit dødelige legeme. Styrk min ringe og ynkelige hånd, og led mig på frelsens vej. Hellige Guds engel, vogter for min arme sjæl, mit arme legemes beskytter; tilgiv mig alt, hvormed jeg har krænket dig gennem hele mit liv, og hvis jeg har syndet i natten, som er gået. Beskyt mig igennem dagen, som stunder til; bevar mig fra alle den ondes fristelser, så jeg ikke forarger min Gud med nogen synd. Bed for mig hos Herren, at Han må befæste mig i gudsfrygt og lede mig frem til at blive en værdig tjener for Hans godhed. Amen." 
+    body: "Hellige engel, som våger over min arme sjæl og mit syndefulde liv; forlad ikke mig, syndige menneske, og vig ej fra mig for min svagheds skyld. Lad ikke den onde ånd få adgang til at herske over mig ved overgreb på dette, mit dødelige legeme. Styrk min ringe og ynkelige hånd, og led mig på frelsens vej. Hellige Guds engel, vogter for min arme sjæl, mit arme legemes beskytter; tilgiv mig alt, hvormed jeg har krænket Dig gennem hele mit liv, og hvis jeg har syndet i natten, som er gået. Beskyt mig igennem dagen, som stunder til; bevar mig fra alle den ondes fristelser, så jeg ikke forarger min Gud med nogen synd. Bed for mig hos Herren, at Han må befæste mig i gudsfrygt og lede mig frem til at blive en værdig tjener for Hans godhed. Amen." 
   },
   bønTilGudfødersken: { 
     title: "Bøn til den alhellige Gudføderske", 
-    body: "Min alhellige Herskerinde, Gudsmoder, fordriv ved dine hellige og mægtige bønner alle urene, falske og hedenske tanker fra mit forstokkede hjerte og forvirrede sind, for jeg er fattig og ringe. Frels mig fra de mange forfærdelige tanker og hensigter, og red mig fra alle onde gerninger; for du er velsignet af alle slægter, og dit højtærede navn prises af alle slægter i al evighed. Amen.\n\nGudføderske og Jomfru, fryd dig; Maria, fuld af nåde, Herren er med dig; velsignet være du blandt kvinder, og velsignet være dit livs frugt, for du har født vor sjæles frelse." 
+    body: "Min alhellige Herskerinde, Gudsmoder, fordriv ved dine hellige og mægtige bønner alle urene, falske og hedenske tanker fra mit forstokkede hjerte og forvirrede sind, for jeg er fattig og ringe. Frels mig fra de mange forfærdelige tanker og hensigter, og red mig fra alle onde gerninger; for Du er velsignet af alle slægter, og dit højtærede navn prises af alle slægter i al evighed. Amen.\n\nGudføderske og Jomfru, fryd Dig; Maria, fuld af nåde, Herren er med Dig; velsignet være Du blandt kvinder, og velsignet være dit livs frugt, for Du har født vor sjæles frelse." 
   },
   troparionTilDetHelligeKors: { 
     title: "Troparion til det hellige kors", 
@@ -51,13 +51,17 @@ const prayers = {
     title: "Bøn for de hensovne", 
     body: "Kom i hu, Herre, alle rettroende kristne, som er sovet hen i troen på opstandelsen og i håbet om det evige liv. Lad dem få bolig blandt de hellige, hvor Dit åsyns lys stråler; og forbarm Dig også over os, for Du er god og elsker menneskene." 
   },
+  faderSophronij: { 
+    title: "Morgenbøn af Fader Sophronij", 
+    body: "Evige Herre, det synliges og det usynliges Skaber;\nDu, som i Din uransaglige godhed har kaldt mig til dette liv;\nSom har skænket mig dåbens nåde og Helligåndens segl;\nSom har indgivet mig længslen efter Dig, den eneste sande Gud:\nHør min bøn.\n\nJeg har intet liv, intet lys, ingen glæde eller visdom;\nIngen styrke uden i Dig, vor Gud;\nFor min synds skyld vover jeg ikke at løfte mine øjne til Dig;\nMen Du har sagt til Dine disciple:\n'Alt, hvad I beder om i tro, dét skal I få;' Og: 'Alt, hvad I beder om i mit navn, dét vil jeg gøre;'\nDerfor vover jeg at påkalde Dig:\nRens mig fra alt mørke i kød og i ånd;\nLær mig at bede på den rette måde;\nVelsign denne dag, som Du skænker mig, Din uværdige tjener;\nMed rent hjerte, med ydmyghed, tålmodighed, kærlighed;\nMed venlighed, fred, mod og visdom;\nLær mig altid at føle Dit nærvær.\n\nVis mig, Herre, i Din uendelige godhed, Din viljes vej;\nOg giv, at jeg må vandre uden synd under Dit blik;\nHerre, Du, for hvem alle hjerter er åbne;\nDu véd, hvad jeg har brug for;\nDu kender min blindhed og min uvidenhed;\nDu kender min sygdom og min sjæls fordærv;\nMen heller ikke min smerte og mine kvaler er skjult for Dig;\nOg derfor bønfalder jeg Dig: Hør min bøn.\nOg vis mig ved Din Helligånd den vej, jeg skal gå;\nNår min syndige vilje trækker mig ad andre veje;\nSå skån mig ikke, Herre, men tving mig tilbage til Dig;\nGiv mig, ved Din kærligheds styrke, at holde fast ved det gode;\nBevar mig fra ord eller gerninger, der fordærver sjælen;\nFra ethvert indfald imod Din vilje, fra alt, der sårer min næste;\nindgiv mig, hvad jeg skal sige og hvordan;\nHvis det er Din vilje, at jeg forholder mig tavs, så giv mig at være dét;\nI fred uden at bringe sorg eller såre min næste.\nGrundfæst mig i Dine bud;\nOg lad mig til mit sidste åndedrag ikke forvilde mig bort fra lyset i Dine bud;\nLad Dine bud blive min eneste lov, på denne jord og i al evighed.\n\nHerre, jeg bønfalder Dig, forbarm Dig over mig.\nSkån mig i min sorg og elendighed.\nOg skjul ikke frelsens vej for mig.\n\nI min tåbelighed, Herre, anråber jeg Dig om mange store ting;\nSelv om jeg altid er bevidst om min syndighed, min usselhed og elendighed;\nForbarm Dig over mig.\nVis mig ikke bort fra Dit åsyn for min dristighed;\nMen styrk mig i dristigheden, og giv mig, den værste blandt mennesker;\nAt elske Dig, som Du har befalet:\nAf hele mit hjerte og af hele min sjæl;\nAf al min tanke, af al min styrke og af hele mit væsen.\n\nHerre, lær mig ved Din Helligånd skelnen og visdom;\nGiv mig at kende Din sandhed, før jeg sænkes i graven.\nBevar mit liv i denne verden, til jeg kan yde Dig sand anger;\nRiv mig ikke bort midt i mit livs dage, eller mens min sjæl endnu er blind;\nNår det er Din vilje, at mit liv på jorden skal bringes til ende;\nGiv mig da tid til at forberede min sjæl på at møde Dig;\nOg giv mig et godt regnskab for Din domstol.\n\nGiv dét, Herre, af Din store nåde og uendelige kærlighed til menneskene. Amen." 
+  },
   afslutning_othodox: { 
     title: "Afslutningsbønner", 
     body: "Herre, Jesus Kristus, Guds Søn, hør forbønnerne fra Din alrene Moder og fra alle Dine hellige, og forbarm Dig over os. Amen." 
   },
   introGlory: { 
     title: "Ære være Gud", 
-    body: "Ære være dig, vor Gud, ære være dig." 
+    body: "Ære være Dig, vor Gud, ære være Dig." 
   },
   gloria: { 
     title: "Ære være Faderen", 
@@ -69,7 +73,7 @@ const prayers = {
   },
   pater: { 
     title: "Fadervor", 
-    body: "Fader vor, du som er i Himlene! Helliget vorde dit navn, komme dit rige; ske din vilje som i Himlen således også på jorden; giv os i dag vort daglige brød; og forlad os vor skyld, som også vi forlader vore skyldnere; og led os ikke ind i fristelse, men fri os fra det onde. Amen." 
+    body: "Fader vor, Du som er i Himlene! Helliget vorde dit navn, komme dit rige; ske Din vilje som i Himlen således også på jorden; giv os i dag vort daglige brød; og forlad os vor skyld, som også vi forlader vore skyldnere; og led os ikke ind i fristelse, men fri os fra det onde. Amen." 
   },
   heavenlyKing: { 
     title: "Bøn til Helligånden", 
@@ -77,15 +81,15 @@ const prayers = {
   },
   trisagion: { 
     title: "Trisagion (tre gange)", 
-    body: "Hellige Gud, Hellige Stærke, Hellige Udødelige, forbarm dig over os. (Gentages tre gange)" 
+    body: "Hellige Gud, Hellige Stærke, Hellige Udødelige, forbarm Dig over os. (Gentages tre gange)" 
   },
   trinity: { 
     title: "Bøn til Treenigheden", 
-    body: "Allhellige Treenighed, forbarm dig over os. Herre, rens os fra vore synder. Hersker, forlad os vore misgerninger. Hellige, kom til os, og helbred vore skrøbeligheder for Dit Navns skyld.\n\nHerre, forbarm Dig (tre gange)" 
+    body: "Allhellige Treenighed, forbarm Dig over os. Herre, rens os fra vore synder. Hersker, forlad os vore misgerninger. Hellige, kom til os, og helbred vore skrøbeligheder for Dit Navns skyld.\n\nHerre, forbarm Dig (tre gange)" 
   },
   jesusPrayer: { 
     title: "Jesusbønnen", 
-    body: "Herre Jesus Kristus, Guds Søn, forbarm dig over mig, en synder." 
+    body: "Herre Jesus Kristus, Guds Søn, forbarm Dig over mig, en synder." 
   },
   creed_orthodox: { 
     title: "Trosbekendelsen (Ortodoks)", 
@@ -93,7 +97,7 @@ const prayers = {
   },
   morningPrayer: { 
     title: "Morgenbøn", 
-    body: "O Herre, giv mig i dag at stå op til et nyt liv i din nåde, renset fra synd, med et hjerte fyldt af taknemmelighed og ydmyghed. Led mine skridt, så jeg må vandre i din sandhed og tjene dig i kærlighed. Amen." 
+    body: "O Herre, giv mig i dag at stå op til et nyt liv i Din nåde, renset fra synd, med et hjerte fyldt af taknemmelighed og ydmyghed. Led mine skridt, så jeg må vandre i Din sandhed og tjene Dig i kærlighed. Amen." 
   },
   eveningForgiveness: { 
     title: "Bøn om tilgivelse", 
@@ -101,11 +105,11 @@ const prayers = {
   },
   theotokos: { 
     title: "Bøn til Theotokos", 
-    body: "O Allhellige Jomfru Maria, Guds Moder, bed for os syndere, beskyt os under dine hellige bønner, og led os til din Søn, vor Frelser. Amen." 
+    body: "O Allhellige Jomfru Maria, Guds Moder, bed for os syndere, beskyt os under dine hellige bønner, og led os til Din Søn, vor Frelser. Amen." 
   },
   eveningPrayer: { 
     title: "Aftenbøn før søvn", 
-    body: "O Herre, vor Gud, beskyt mig denne nat, og giv mig en rolig søvn. Bevar mig fra alt ondt, og led mig til dit evige rige gennem din store barmhjertighed. Amen." 
+    body: "O Herre, vor Gud, beskyt mig denne nat, og giv mig en rolig søvn. Bevar mig fra alt ondt, og led mig til dit evige rige gennem Din store barmhjertighed. Amen." 
   },
   creed_apostolic: { 
     title: "Apostolsk trosbekendelse", 
@@ -113,15 +117,15 @@ const prayers = {
   },
   ave: { 
     title: "Ave Maria", 
-    body: "Hil dig Maria, fuld af nåde, Herren er med dig. Velsignet er du blandt kvinder, og velsignet er dit livs frugt, Jesus.\nHellige Maria, Guds Moder, bed for os syndere, nu og i vor dødstime. Amen." 
+    body: "Hil Dig Maria, fuld af nåde, Herren er med Dig. Velsignet er Du blandt kvinder, og velsignet er dit livs frugt, Jesus.\nHellige Maria, Guds Moder, bed for os syndere, nu og i vor dødstime. Amen." 
   },
   fatima: { 
     title: "Fatimabøn", 
-    body: "O min Jesus, forlad os vore synder, frels os fra helvedes ild; før alle sjæle ind i Himlen, især dem, som trænger mest til din barmhjertighed. Amen." 
+    body: "O min Jesus, forlad os vore synder, frels os fra helvedes ild; før alle sjæle ind i Himlen, især dem, som trænger mest til Din barmhjertighed. Amen." 
   },
   salveRegina: { 
-    title: "Hil dig Dronning (Salve Regina)", 
-    body: "Hil dig, Dronning, barmhjertighedens moder, vort liv, vor mildhed og vort håb, hil dig. Til dig råber vi, Evas forviste børn; til dig sukker vi, klagende og grædende i denne tåredal. Kom derfor, vor talskvinde, vend dine barmhjertige øjne mod os, og efter dette landflygtigheds liv, vis os Jesus, din livs frugt, velsignet. O milde, o fromme, o søde jomfru Maria." 
+    title: "Hil Dig Dronning (Salve Regina)", 
+    body: "Hil Dig, Dronning, barmhjertighedens moder, vort liv, vor mildhed og vort håb, hil Dig. Til Dig råber vi, Evas forviste børn; til Dig sukker vi, klagende og grædende i denne tåredal. Kom derfor, vor talskvinde, vend dine barmhjertige øjne mod os, og efter dette landflygtigheds liv, vis os Jesus, Din livs frugt, velsignet. O milde, o fromme, o søde jomfru Maria." 
   },
   closing: { 
     title: "Afslutningsbøn", 
@@ -129,6 +133,6 @@ const prayers = {
   },
   closing_orthodox: {
     title: "Afslutningsbønner",
-    body: "Værdigt og ret er det at prise dig salg, Gudføderske;\nDu evigt salige, alrene og moder til vor Gud;\nHøjere æret end keruber og uendeligt mere herlig end serafer;\nDu, som uberørt fødte Gud, Ordet;\nSande Gudføderske, dig højlover vi.\n\nÆre være Faderen og Sønnen og Helligånden, nu og altid og i al evighed. Amen.\n\nHerre, forbarm Dig (tre gange)\n\nHerre Jesus Kristus, Guds Søn: Hør forbønnerne fra Din alrene moder, fra vore fromme, gudbærende fædre og fra alle Dine hellige, og forbarm Dig over os. Amen."
+    body: "Værdigt og ret er det at prise Dig salg, Gudføderske;\nDu evigt salige, alrene og moder til vor Gud;\nHøjere æret end keruber og uendeligt mere herlig end serafer;\nDu, som uberørt fødte Gud, Ordet;\nSande Gudføderske, Dig højlover vi.\n\nÆre være Faderen og Sønnen og Helligånden, nu og altid og i al evighed. Amen.\n\nHerre, forbarm Dig (tre gange)\n\nHerre Jesus Kristus, Guds Søn: Hør forbønnerne fra Din alrene moder, fra vore fromme, gudbærende fædre og fra alle Dine hellige, og forbarm Dig over os. Amen."
   }
 };
