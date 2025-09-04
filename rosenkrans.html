@@ -276,21 +276,22 @@
       isSimpleVersion: false
     };
 
-    const els = {
-      daySelect: document.getElementById('daySelect'),
-      versionSelect: document.getElementById('versionSelect'),
-      mysteryTitle: document.getElementById('mysteryTitle'),
-      mysterySubtitle: document.getElementById('mysterySubtitle'),
-      currentKind: document.getElementById('currentKind'),
-      currentTitle: document.getElementById('currentTitle'),
-      currentBody: document.getElementById('currentBody'),
-      progressFill: document.getElementById('progressFill'),
-      nextBtn: document.getElementById('nextBtn'),
-      prevBtn: document.getElementById('prevBtn'),
-      restartBtn: document.getElementById('restartBtn'),
-      overview: document.getElementById('overview'),
-      bg: document.querySelector('.bg')
-    };
+  const els = {
+    daySelect: document.getElementById('daySelect'),
+    versionSelect: document.getElementById('versionSelect'),
+    mysteryTitle: document.getElementById('mysteryTitle'),
+    mysterySubtitle: document.getElementById('mysterySubtitle'),
+    currentKind: document.getElementById('currentKind'),
+    currentTitle: document.getElementById('currentTitle'),
+    currentBody: document.getElementById('currentBody'),
+    progressFill: document.getElementById('progressFill'),
+    nextBtn: document.getElementById('nextBtn'),
+    prevBtn: document.getElementById('prevBtn'),
+    restartBtn: document.getElementById('restartBtn'),
+    overview: document.getElementById('overview'),
+    bg: document.querySelector('.bg'),
+    currentCard: document.getElementById('currentCard') // Added
+  };
 
     function getTodayWeekday() { // 0= søn … 6=lør
       const now = new Date();
@@ -324,9 +325,9 @@
       els.overview.innerHTML = '';
       state.sequence.forEach((s, idx) => {
         const div = document.createElement('div');
-        div.className = 'item';
+        div.className = 'item' + (idx === state.i ? ' active' : ''); // Add 'active' class if idx matches state.i
         div.innerHTML = `<div class="kicker">${s.kind}</div><div> ${s.title}</div>`;
-        div.addEventListener('click', () => { state.i = idx; renderStep(); });
+        div.addEventListener('click', () => { state.i = idx; renderStep(); renderOverview(); }); // Re-render overview on click
         els.overview.appendChild(div);
       });
     }
@@ -342,6 +343,15 @@
       // Buttons
       els.prevBtn.disabled = state.i === 0;
       els.nextBtn.textContent = (state.i === state.sequence.length - 1) ? 'Færdig ✔' : 'Næste ▶';
+      // Scroll to current card only if it's below the viewport
+      const headerHeight = document.querySelector('header').offsetHeight || 0;
+      const extraOffset = 10; // Additional padding in pixels
+      const cardTop = els.currentCard.getBoundingClientRect().top;
+      if (cardTop < headerHeight) {
+        const scrollTop = els.currentCard.getBoundingClientRect().top + window.scrollY - headerHeight - extraOffset;
+        window.scrollTo({ top: scrollTop, behavior: 'smooth' });
+      }
+      renderOverview();
     }
 
     function next() { if (state.i < state.sequence.length - 1) { state.i++; renderStep(); } }

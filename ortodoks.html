@@ -22,6 +22,12 @@
     <div class="inner">
       <a href="/" class="home-btn" aria-label="Hjem" title="Tilbage til forsiden">◀</a>
       <div class="row">
+        <label class="pill" title="Vælg version">
+          <select id="versionSelect" aria-label="Vælg version">
+            <option value="false">Fuld version</option>
+            <option value="true">Simpel version</option>
+          </select>
+        </label>
         <label class="pill" title="Vælg bønnesæt">
           <select id="setSelect" aria-label="Vælg bønnesæt">
             <option value="0">Morgenbønner</option>
@@ -86,21 +92,21 @@
         subtitle: "Bedes dagligt ved opvågnen",
         image: "bg-ortodoks-morgen.jpg",
         items: [
-          { title: prayers.signOfCross.title, body: prayers.signOfCross.body, kind: "" },
-          { title: prayers.tolder.title, body: prayers.tolder.body, kind: "" },
-          { title: prayers.indledning_othodox.title, body: prayers.indledning_othodox.body, kind: "" },
-          { title: prayers.morgenTroparier.title, body: prayers.morgenTroparier.body, kind: "" },
-          { title: prayers.basiliosDenStore.title, body: prayers.basiliosDenStore.body, kind: "" },
-          { title: prayers.salme51.title, body: prayers.salme51.body, kind: "" },
-          { title: prayers.creed_orthodox.title, body: prayers.creed_orthodox.body, kind: "" },
-          { title: prayers.makariosDenStore_morgen.title, body: prayers.makariosDenStore_morgen.body, kind: "" },
-          { title: prayers.basiliosDenStore2.title, body: prayers.basiliosDenStore2.body, kind: "" },
-          { title: prayers.bønTilSkytsenglen_morgen.title, body: prayers.bønTilSkytsenglen_morgen.body, kind: "" },
-          { title: prayers.bønTilGudfødersken.title, body: prayers.bønTilGudfødersken.body, kind: "" },
-          { title: prayers.bønForDeLevende.title, body: prayers.bønForDeLevende.body, kind: "" },
-          { title: prayers.bønForDeHensovne.title, body: prayers.bønForDeHensovne.body, kind: "" },
-          { title: prayers.faderSophronij.title, body: prayers.faderSophronij.body, kind: "" },
-          { title: prayers.closing_orthodox.title, body: prayers.closing_orthodox.body, kind: "" }
+          { title: prayers.signOfCross.title, body: prayers.signOfCross.body, kind: "Indledning" },
+          { title: prayers.tolder.title, body: prayers.tolder.body, kind: "Indledning" },
+          { title: prayers.indledning_othodox.title, body: prayers.indledning_othodox.body, kind: "Indledning" },
+          { title: prayers.morgenTroparier.title, body: prayers.morgenTroparier.body, kind: "Troparier" },
+          { title: prayers.basiliosDenStore.title, body: prayers.basiliosDenStore.body, kind: "Bøn" },
+          { title: prayers.salme51.title, body: prayers.salme51.body, kind: "Salme" },
+          { title: prayers.creed_orthodox.title, body: prayers.creed_orthodox.body, kind: "Trosbekendelse" },
+          { title: prayers.makariosDenStore_morgen.title, body: prayers.makariosDenStore_morgen.body, kind: "Bøn" },
+          { title: prayers.basiliosDenStore2.title, body: prayers.basiliosDenStore2.body, kind: "Bøn" },
+          { title: prayers.bønTilSkytsenglen_morgen.title, body: prayers.bønTilSkytsenglen_morgen.body, kind: "Bøn" },
+          { title: prayers.bønTilGudfødersken.title, body: prayers.bønTilGudfødersken.body, kind: "Bøn" },
+          { title: prayers.bønForDeLevende.title, body: prayers.bønForDeLevende.body, kind: "Bøn" },
+          { title: prayers.bønForDeHensovne.title, body: prayers.bønForDeHensovne.body, kind: "Bøn" },
+          { title: prayers.faderSophronij.title, body: prayers.faderSophronij.body, kind: "Bøn" },
+          { title: prayers.closing_orthodox.title, body: prayers.closing_orthodox.body, kind: "Afslutning" }
         ]
       },
       Evening: {
@@ -108,18 +114,19 @@
         subtitle: "Bedes dagligt før søvn",
         image: "bg-ortodoks-aften.jpg",
         items: [
-          { title: prayers.signOfCross.title, body: prayers.signOfCross.body, kind: "" },
-          { title: prayers.tolder.title, body: prayers.tolder.body, kind: "" },
-          { title: prayers.indledning_othodox.title, body: prayers.indledning_othodox.body, kind: "" },
-          { title: prayers.troparier.title, body: prayers.troparier.body, kind: "" },
-          { title: prayers.makariosDenStore_aften.title, body: prayers.makariosDenStore_aften.body, kind: "" },
-          { title: prayers.antiokos.title, body: prayers.antiokos.body, kind: "" },
-          { title: prayers.johannesChrysostomos.title, body: prayers.johannesChrysostomos.body, kind: "" },
-          { title: prayers.bønTilDenAlreneGudsmoder.title, body: prayers.bønTilDenAlreneGudsmoder.body, kind: "" },
-          { title: prayers.bønTilSkytsenglen_aften.title, body: prayers.bønTilSkytsenglen_aften.body, kind: "" },
-          { title: prayers.tilGudsmoder.title, body: prayers.tilGudsmoder.body, kind: "" },
-          { title: prayers.bønTilTreenigheden.title, body: prayers.bønTilTreenigheden.body, kind: "" },
-          { title: prayers.closing_orthodox.title, body: prayers.closing_orthodox.body, kind: "" }
+          { title: prayers.signOfCross.title, body: prayers.signOfCross.body, kind: "Indledning" },
+          { title: prayers.tolder.title, body: prayers.tolder.body, kind: "Indledning" },
+          { title: prayers.indledning_othodox.title, body: prayers.indledning_othodox.body, kind: "Indledning" },
+          { title: prayers.troparier.title, body: prayers.troparier.body, kind: "Troparier" },
+          { title: prayers.creed_orthodox.title, body: prayers.creed_orthodox.body, kind: "Trosbekendelse" },
+          { title: prayers.makariosDenStore_aften.title, body: prayers.makariosDenStore_aften.body, kind: "Bøn" },
+          { title: prayers.antiokos.title, body: prayers.antiokos.body, kind: "Bøn" },
+          { title: prayers.johannesChrysostomos.title, body: prayers.johannesChrysostomos.body, kind: "Bøn" },
+          { title: prayers.bønTilDenAlreneGudsmoder.title, body: prayers.bønTilDenAlreneGudsmoder.body, kind: "Bøn" },
+          { title: prayers.bønTilSkytsenglen_aften.title, body: prayers.bønTilSkytsenglen_aften.body, kind: "Bøn" },
+          { title: prayers.tilGudsmoder.title, body: prayers.tilGudsmoder.body, kind: "Bøn" },
+          { title: prayers.bønTilTreenigheden.title, body: prayers.bønTilTreenigheden.body, kind: "Bøn" },
+          { title: prayers.closing_orthodox.title, body: prayers.closing_orthodox.body, kind: "Afslutning" }
         ]
       }
     };
@@ -134,20 +141,43 @@
     }
 
     // Byg rækken af trin for et valgt bønnesæt
-    function buildSequence(setKey) {
+    function buildSequence(setKey, isSimpleVersion) {
       const set = PRAYER_SETS[setKey];
-      return { seq: set.items, set };
+      let seq = [];
+
+      if (isSimpleVersion) {
+        // Simpel version: Kun essentielle bønner
+        seq = [
+          { title: prayers.signOfCross.title, body: prayers.signOfCross.body, kind: "Indledning" },
+          { title: prayers.tolder.title, body: prayers.tolder.body, kind: "Indledning" },
+          { title: prayers.indledning_othodox.title, body: prayers.indledning_othodox.body, kind: "Indledning" },
+          { title: prayers.jesusPrayer.title, body: prayers.jesusPrayer.body + '\n\n(Gentages 10 gange)', kind: "Bøn" },
+          { title: prayers.theotokos.title, body: prayers.theotokos.body, kind: "Bøn" },
+          { title: prayers.creed_orthodox.title, body: prayers.creed_orthodox.body, kind: "Trosbekendelse" },
+          { title: prayers.closing_orthodox.title, body: prayers.closing_orthodox.body, kind: "Afslutning" }
+        ];
+        if (setKey === 'Evening') {
+          seq.splice(4, 0, { title: prayers.eveningForgiveness.title, body: prayers.eveningForgiveness.body, kind: "Bøn" });
+        }
+      } else {
+        // Fuld version: Alle bønner fra sættet
+        seq = set.items;
+      }
+
+      return { seq, set };
     }
 
     // UI state
     const state = {
       setKey: null,
       sequence: [],
-      i: 0
+      i: 0,
+      isSimpleVersion: false
     };
 
     const els = {
       setSelect: document.getElementById('setSelect'),
+      versionSelect: document.getElementById('versionSelect'),
       setTitle: document.getElementById('setTitle'),
       setSubtitle: document.getElementById('setSubtitle'),
       currentKind: document.getElementById('currentKind'),
@@ -158,7 +188,8 @@
       prevBtn: document.getElementById('prevBtn'),
       restartBtn: document.getElementById('restartBtn'),
       overview: document.getElementById('overview'),
-      bg: document.querySelector('.bg')
+      bg: document.querySelector('.bg'),
+      currentCard: document.getElementById('currentCard') // Added to els
     };
 
     function selectSetForUI() {
@@ -168,7 +199,7 @@
     }
 
     function loadSet(key) {
-      const built = buildSequence(key);
+      const built = buildSequence(key, state.isSimpleVersion);
       state.setKey = key;
       state.sequence = built.seq;
       state.i = 0;
@@ -187,9 +218,9 @@
       els.overview.innerHTML = '';
       state.sequence.forEach((s, idx) => {
         const div = document.createElement('div');
-        div.className = 'item';
+        div.className = 'item' + (idx === state.i ? ' active' : ''); // Add 'active' class if idx matches state.i
         div.innerHTML = `<div class="kicker">${s.kind}</div><div> ${s.title}</div>`;
-        div.addEventListener('click', () => { state.i = idx; renderStep(); });
+        div.addEventListener('click', () => { state.i = idx; renderStep(); renderOverview(); }); // Re-render overview on click
         els.overview.appendChild(div);
       });
     }
@@ -205,16 +236,31 @@
       // Buttons
       els.prevBtn.disabled = state.i === 0;
       els.nextBtn.textContent = (state.i === state.sequence.length - 1) ? 'Færdig ✔' : 'Næste ▶';
+      // Scroll to current card only if it's below the viewport
+      const headerHeight = document.querySelector('header').offsetHeight || 0;
+      const extraOffset = 10; // Additional padding in pixels
+      const cardTop = els.currentCard.getBoundingClientRect().top;
+      if (cardTop < headerHeight) {
+        const scrollTop = els.currentCard.getBoundingClientRect().top + window.scrollY - headerHeight - extraOffset;
+        window.scrollTo({ top: scrollTop, behavior: 'smooth' });
+      }
+      renderOverview();
     }
 
     function next() { if (state.i < state.sequence.length - 1) { state.i++; renderStep(); } }
     function prev() { if (state.i > 0) { state.i--; renderStep(); } }
     function restart() { state.i = 0; renderStep(); }
 
+    function toggleVersion() {
+      state.isSimpleVersion = els.versionSelect.value === 'true';
+      selectSetForUI();
+    }
+
     function loadPrefs() {
       const now = new Date();
       const hour = now.getHours();
       els.setSelect.value = hour < 16 ? '0' : '1';
+      els.versionSelect.value = state.isSimpleVersion ? 'true' : 'false';
       selectSetForUI();
     }
 
@@ -223,6 +269,7 @@
     els.prevBtn.addEventListener('click', prev);
     els.restartBtn.addEventListener('click', restart);
     els.setSelect.addEventListener('change', () => { selectSetForUI(); });
+    els.versionSelect.addEventListener('change', toggleVersion);
 
     // Gestus: tryk på teksten for næste
     document.getElementById('currentCard').addEventListener('click', (e) => {

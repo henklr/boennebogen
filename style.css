@@ -131,8 +131,11 @@ h1 {
     transform: translateY(-2px);
     cursor: pointer;
 }
-.list .item:active {
-    transform: translateY(1px);
+.list .item.active {
+    background: rgba(72, 38, 16, 0.6);
+    border: 1px solid #a87648;
+    color: #e8d1b5;
+    font-weight: 700;
 }
 .center { text-align: center; }
 .big { font-size: 22px; }

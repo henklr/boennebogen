@@ -161,6 +161,6 @@ const prayers = {
   },
   closing_orthodox: {
     title: "Afslutningsbønner",
-    body: "Værdigt og ret er det at prise Dig salg, Gudføderske;\nDu evigt salige, alrene og moder til vor Gud;\nHøjere æret end keruber og uendeligt mere herlig end serafer;\nDu, som uberørt fødte Gud, Ordet;\nSande Gudføderske, Dig højlover vi.\n\nÆre være Faderen og Sønnen og Helligånden, nu og altid og i al evighed. Amen.\n\nHerre, forbarm Dig (tre gange)\n\nHerre Jesus Kristus, Guds Søn: Hør forbønnerne fra Din alrene moder, fra vore fromme, gudbærende fædre og fra alle Dine hellige, og forbarm Dig over os. Amen."
+    body: "Værdigt og ret er det at prise Dig salig, Gudføderske;\nDu evigt salige, alrene og moder til vor Gud;\nHøjere æret end keruber og uendeligt mere herlig end serafer;\nDu, som uberørt fødte Gud, Ordet;\nSande Gudføderske, Dig højlover vi.\n\nÆre være Faderen og Sønnen og Helligånden, nu og altid og i al evighed. Amen.\n\nHerre, forbarm Dig (tre gange)\n\nHerre Jesus Kristus, Guds Søn: Hør forbønnerne fra Din alrene moder, fra vore fromme, gudbærende fædre og fra alle Dine hellige, og forbarm Dig over os. Amen."
   }
 };
