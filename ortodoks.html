@@ -15,6 +15,19 @@
   <link rel="preload" href="bg-sorrowful.jpg" as="image">
   <link rel="preload" href="bg-glorious.jpg" as="image">
   <script src="prayers.js"></script>
+
+  <!-- Inline helper CSS for the fixed/scrollable overview (move to style.css if you prefer) -->
+  <style>
+    .card details[open] #overview {
+      height: clamp(240px, 40vh, 420px);
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      padding-right: 6px;
+      scroll-behavior: smooth;
+      border-radius: 10px;
+      -webkit-overflow-scrolling: touch;
+    }
+  </style>
 </head>
 <body class="ortodoks">
   <div class="bg"></div>
@@ -24,8 +37,8 @@
       <div class="row">
         <label class="pill" title="Vælg version">
           <select id="versionSelect" aria-label="Vælg version">
-            <option value="false">Fuld version</option>
-            <option value="true">Simpel version</option>
+            <option value="false">Lang</option>
+            <option value="true">Kort</option>
           </select>
         </label>
         <label class="pill" title="Vælg bønnesæt">
@@ -54,7 +67,7 @@
       </div>
 
       <div class="card">
-        <details>
+        <details id="overviewDetails">
           <summary><strong>Oversigt</strong> – hele forløbet</summary>
           <div id="overview" class="list" style="margin-top:10px"></div>
         </details>
@@ -64,7 +77,7 @@
         <details>
           <summary><strong>Hjælp</strong> – sådan beder du de ortodokse bønner</summary>
           <ol>
-            <li>Stå foran ikonerne, gør korsets tegn og begynd med indledende bønner.</li>
+            <li>Stå foran ikonerne, gør korsets tegn og begynd med indledningsbønner.</li>
             <li>Bed roligt og opmærksomt, gerne højt eller i en hvisken, for at holde fokus.</li>
             <li><strong>Morgenbønner</strong>: Følg rækkefølgen: Korsets tegn, indledningsbønner, Jesusbønnen (gentages), Trosbekendelsen, og afsluttende bønner.</li>
             <li><strong>Aftenbønner</strong>: Følg rækkefølgen: Korsets tegn, bøn om tilgivelse, Jesusbønnen (gentages), bøn til Theotokos, og bøn før søvn.</li>
@@ -189,7 +202,8 @@
       restartBtn: document.getElementById('restartBtn'),
       overview: document.getElementById('overview'),
       bg: document.querySelector('.bg'),
-      currentCard: document.getElementById('currentCard') // Added to els
+      currentCard: document.getElementById('currentCard'),
+      overviewDetails: document.getElementById('overviewDetails') // <-- added
     };
 
     function selectSetForUI() {
@@ -214,13 +228,25 @@
       renderStep();
     }
 
+    // helper: keep the active step near the top of the overview scrollbox
+    function scrollOverviewToActive(behavior = 'auto') {
+      const active = els.overview.querySelector('.item.active');
+      if (!active) return;
+
+      const gap = 50; // px breathing room
+      const padTop = parseFloat(getComputedStyle(els.overview).paddingTop) || 0;
+      const targetTop = Math.max(0, active.offsetTop - padTop - gap);
+
+      els.overview.scrollTo({ top: targetTop, behavior });
+    }
+
     function renderOverview() {
       els.overview.innerHTML = '';
       state.sequence.forEach((s, idx) => {
         const div = document.createElement('div');
-        div.className = 'item' + (idx === state.i ? ' active' : ''); // Add 'active' class if idx matches state.i
+        div.className = 'item' + (idx === state.i ? ' active' : '');
         div.innerHTML = `<div class="kicker">${s.kind}</div><div> ${s.title}</div>`;
-        div.addEventListener('click', () => { state.i = idx; renderStep(); renderOverview(); }); // Re-render overview on click
+        div.addEventListener('click', () => { state.i = idx; renderStep(); });
         els.overview.appendChild(div);
       });
     }
@@ -236,15 +262,17 @@
       // Buttons
       els.prevBtn.disabled = state.i === 0;
       els.nextBtn.textContent = (state.i === state.sequence.length - 1) ? 'Færdig ✔' : 'Næste ▶';
-      // Scroll to current card only if it's below the viewport
+      // Keep current card visible below sticky header
       const headerHeight = document.querySelector('header').offsetHeight || 0;
-      const extraOffset = 10; // Additional padding in pixels
+      const extraOffset = 10;
       const cardTop = els.currentCard.getBoundingClientRect().top;
       if (cardTop < headerHeight) {
         const scrollTop = els.currentCard.getBoundingClientRect().top + window.scrollY - headerHeight - extraOffset;
         window.scrollTo({ top: scrollTop, behavior: 'smooth' });
       }
+      // Re-render overview, then align it
       renderOverview();
+      scrollOverviewToActive('auto'); // set to 'smooth' if you prefer
     }
 
     function next() { if (state.i < state.sequence.length - 1) { state.i++; renderStep(); } }
@@ -271,10 +299,15 @@
     els.setSelect.addEventListener('change', () => { selectSetForUI(); });
     els.versionSelect.addEventListener('change', toggleVersion);
 
-    // Gestus: tryk på teksten for næste
-    document.getElementById('currentCard').addEventListener('click', (e) => {
-      next();
+    // When the overview <details> opens, align the active item to the top with a gap
+    els.overviewDetails.addEventListener('toggle', () => {
+      if (els.overviewDetails.open) {
+        setTimeout(() => scrollOverviewToActive('smooth'), 0);
+      }
     });
+
+    // Gestus: tryk på teksten for næste
+    document.getElementById('currentCard').addEventListener('click', () => { next(); });
 
     // Tastatur (space/enter/venstre/højre)
     window.addEventListener('keydown', (e) => {
