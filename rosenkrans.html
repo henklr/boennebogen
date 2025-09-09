@@ -360,6 +360,16 @@
       });
     }
 
+    function logRenderStep() {
+      const now = new Date().toISOString();
+      const current = state.i + 1;
+      const total = state.sequence.length;
+      const setName = MYSTERIES[state.setKey].name;
+      const stepTitle = state.sequence[state.i].title;
+
+      console.log(`[${now}] Step ${current}/${total} – ${setName} – ${stepTitle}`);
+    }
+
     function renderStep() {
       const s = state.sequence[state.i];
       els.currentKind.textContent = s.kind;
@@ -381,7 +391,10 @@
       }
       // Re-render overview and then align it
       renderOverview();
-      scrollOverviewToActive('auto'); // change to 'smooth' if you prefer
+      scrollOverviewToActive('auto');
+
+      // <-- add the log here
+      logRenderStep();
     }
 
     function next() { if (state.i < state.sequence.length - 1) { state.i++; renderStep(); } }
@@ -426,5 +439,177 @@
     // Init
     loadPrefs();
   </script>
+<script>
+  // === CONFIG (keep yours) ===
+  const LOG_ENDPOINT = "/api/rosenkrans/logs";
+  const LOG_BATCH_SIZE = 10;
+  const LOG_FLUSH_MS  = 5000;
+
+  // --- NEW LIMITS ---
+  const MAX_STASH_ENTRIES    = 2000;       // cap localStorage backlog
+  const MAX_ENTRIES_PER_POST = 50;         // small batches
+  const MAX_BODY_BYTES       = 120 * 1024; // ~120KB, under nginx 256k
+
+  // === SESSION-ID & QUEUE (keep yours) ===
+  const sessionId = (crypto && crypto.randomUUID)
+    ? crypto.randomUUID()
+    : (Date.now().toString(36) + Math.random().toString(36).slice(2));
+
+  const logQueue = [];
+  let flushTimer = null;
+  let isFlushing = false;
+
+  function scheduleFlush() {
+    if (flushTimer) return;
+    flushTimer = setTimeout(flushLogs, LOG_FLUSH_MS);
+  }
+
+  // --- NEW: stash helpers ---
+  function getStash() {
+    try { return JSON.parse(localStorage.getItem("rosenkrans_log_stash") || "[]"); }
+    catch { return []; }
+  }
+  function setStash(arr) {
+    try {
+      if (arr.length > MAX_STASH_ENTRIES) arr = arr.slice(-MAX_STASH_ENTRIES);
+      localStorage.setItem("rosenkrans_log_stash", JSON.stringify(arr));
+    } catch {
+      // last resort: keep only the newest 200
+      try { localStorage.setItem("rosenkrans_log_stash", JSON.stringify(arr.slice(-200))); } catch {}
+    }
+  }
+
+  // --- NEW: build a safe chunk by count & size ---
+  function buildChunk(fromArr) {
+    const out = [];
+    for (let i = 0; i < fromArr.length && out.length < MAX_ENTRIES_PER_POST; i++) {
+      const candidate = fromArr[i];
+      const tentative = JSON.stringify({ entries: out.concat([candidate]) });
+      if (tentative.length > MAX_BODY_BYTES) break;
+      out.push(candidate);
+    }
+    return out;
+  }
+
+  // === CHANGE: flush immediately (switch back later if you want batching) ===
+  function enqueueLog(event) {
+    try {
+      logQueue.push(event);
+      flushLogs().catch(err => console.error("flush error", err));
+      // If you prefer batching later, use:
+      // if (logQueue.length >= LOG_BATCH_SIZE) flushLogs().catch(()=>{});
+      // else scheduleFlush();
+    } catch {
+      const stash = getStash();
+      stash.push(event);
+      setStash(stash);
+    }
+  }
+
+  // === CHANGE: chunked flush with stash cap ===
+  async function flushLogs(useBeacon = false) {
+    if (isFlushing) return;
+    clearTimeout(flushTimer);
+    flushTimer = null;
+
+    const stash = getStash();
+    if (stash.length === 0 && logQueue.length === 0) return;
+
+    // drain old first, then new
+    const merged = stash.concat(logQueue.splice(0));
+    const chunk = buildChunk(merged);
+    if (chunk.length === 0) return; // defensive
+
+    const bodyStr = JSON.stringify({ entries: chunk });
+    isFlushing = true;
+    try {
+      if (useBeacon && navigator.sendBeacon) {
+        const ok = navigator.sendBeacon(LOG_ENDPOINT, new Blob([bodyStr], { type: "application/json" }));
+        if (!ok) throw new Error("sendBeacon returned false");
+      } else {
+        const res = await fetch(LOG_ENDPOINT, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: bodyStr,
+          keepalive: true
+        });
+        if (!res.ok) throw new Error("HTTP " + res.status);
+      }
+
+      // success: stash the unsent remainder
+      const remaining = merged.slice(chunk.length);
+      setStash(remaining);
+
+      // if more to send, keep draining soon
+      if (remaining.length > 0 || logQueue.length > 0) {
+        setTimeout(() => { isFlushing = false; flushLogs().catch(()=>{}); }, 50);
+        return;
+      }
+    } catch (err) {
+      // failure: re-stash everything (capped)
+      setStash(merged.concat(logQueue.splice(0)));
+      console.warn("flush failed, will retry later:", err);
+    } finally {
+      isFlushing = false;
+    }
+  }
+  
+  // Flush when tab is hidden/closed
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState !== "visible") flushLogs(true);
+  });
+  window.addEventListener("pagehide", () => flushLogs(true)); // better than beforeunload on mobile
+
+  // === BUILD & ENQUEUE ONE ENTRY ===
+  function logRenderStepServer() {
+    const now = new Date().toISOString();
+    const current = (state?.i ?? 0) + 1;
+    const total = state?.sequence?.length ?? 0;
+    const setKey = state?.setKey ?? "unknown";
+    const setName = (MYSTERIES?.[setKey]?.name) || setKey;
+    const s = (state?.sequence?.[state?.i || 0]) || {};
+    const stepTitle = s.title || "";
+    const kind = s.kind || "";
+
+    enqueueLog({
+      ts: now,
+      sessionId,
+      setKey,
+      setName,
+      stepTitle,
+      kind,
+      step: current,
+      total,
+      versionSimple: !!(state?.isSimpleVersion),
+      locale: navigator.language || "da",
+      ua: navigator.userAgent
+    });
+  }
+
+  // === PATCH renderStep so every render logs ===
+  (function patchRenderStepForLogging() {
+    if (typeof window.renderStep !== "function") {
+      console.warn("log-init: renderStep not found yet – will retry after a tick");
+      setTimeout(patchRenderStepForLogging, 0);
+      return;
+    }
+    const originalRenderStep = window.renderStep;
+    window.renderStep = function() {
+      const ret = originalRenderStep.apply(this, arguments);
+      console.log("log-init: renderStep fired");
+      logRenderStepServer();
+      return ret;
+    };
+    console.log("log-init: renderStep patched");
+
+    // *** EXTRA: log the very first already-rendered step too ***
+    // On initial load, your code calls renderStep() BEFORE this patch.
+    // Log once now so the first step is captured.
+    if (state?.sequence?.length) {
+      console.log("log-init: logging initial render");
+      logRenderStepServer();
+    }
+  })();
+</script>
 </body>
 </html>

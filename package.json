@@ -1,0 +1,25 @@
+{
+  "type": "module",
+  "name": "boennebogen.dk",
+  "version": "1.0.0",
+  "description": "",
+  "main": "prayers.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/henklr/web-pray.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/henklr/web-pray/issues"
+  },
+  "homepage": "https://github.com/henklr/web-pray#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
